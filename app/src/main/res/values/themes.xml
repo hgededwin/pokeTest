@@ -1,10 +1,12 @@
-<?xml version="1.0" encoding="utf-8"?>
-<resources>
-
-    <style name="Theme.PokeTest" parent="android:Theme.Material.Light.NoActionBar" />
+<resources xmlns:tools="http://schemas.android.com/tools">
     <!-- Base application theme. -->
     <style name="Base.Theme.PokeTest" parent="Theme.Material3.DayNight.NoActionBar">
-        <!-- Customize your light theme here. -->
-        <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
+        <item name="colorPrimary">@color/primary_color</item>
+        <item name="colorPrimaryContainer">@color/primary_container_color</item>
+        <item name="colorSecondary">@color/secondary_color</item>
+        <item name="colorSecondaryContainer">@color/secondary_container_color</item>
+        <item name="android:colorBackground">@color/white_color</item>
     </style>
+
+    <style name="Theme.PokeTest" parent="Base.Theme.PokeTest" />
 </resources>
