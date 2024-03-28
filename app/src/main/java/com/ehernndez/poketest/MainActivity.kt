@@ -11,13 +11,10 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
         Log.e("--->", "method onCreate was called")
 
-        /*
-           supportFragmentManager.beginTransaction().apply {
+        supportFragmentManager.beginTransaction().apply {
             replace(R.id.fragment_container_view, FirstFragment())
-            commit()
+                .commit()
         }
-         */
-
     }
 
     override fun onStart() {

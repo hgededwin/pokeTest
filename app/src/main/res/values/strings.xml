@@ -4,6 +4,6 @@
     <string name="txt_title_pokemon">Gotta catch\'em all!</string>
     <string name="txt_detail_app">Usa tu pokedex para concer toda la información de los Pokemon. Registra todos los que tengas</string>
     <string name="txt_have_account">¿Ya tienes una cuenta, haz click aquí</string>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="btn_back">Regresar</string>
+    <string name="btn_next">Siguiente</string>
 </resources>
