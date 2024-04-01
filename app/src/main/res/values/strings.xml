@@ -6,4 +6,8 @@
     <string name="txt_have_account">¿Ya tienes una cuenta, haz click aquí</string>
     <string name="btn_back">Regresar</string>
     <string name="btn_next">Siguiente</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="txt_create_account">Crear cuenta</string>
+    <string name="txt_add_next_data">Ingresa los siguientes datos:</string>
 </resources>
