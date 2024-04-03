@@ -12,4 +12,6 @@
     <string name="txt_add_next_data">Ingresa los siguientes datos:</string>
     <string name="txt_hint_names">Nombre(s)</string>
     <string name="txt_lastname">Apellidos</string>
+    <string name="fecha_de_nacimiento">Fecha de nacimiento</string>
+    <string name="txt_email">Correo electrónico</string>
 </resources>
