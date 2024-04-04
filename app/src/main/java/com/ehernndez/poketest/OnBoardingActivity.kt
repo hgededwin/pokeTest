@@ -4,7 +4,13 @@ import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.widget.Button
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import com.google.android.material.datepicker.MaterialDatePicker
+import java.text.SimpleDateFormat
+import java.util.Calendar
+import java.util.Locale
+import java.util.TimeZone
 
 class OnBoardingActivity : AppCompatActivity() {
     lateinit var btnStart: Button
@@ -16,13 +22,14 @@ class OnBoardingActivity : AppCompatActivity() {
         btnStart = findViewById(R.id.btn_start)
 
         btnStart.setOnClickListener {
-           val intent = Intent(this, RegisterActivity::class.java)
+            val intent = Intent(this, RegisterActivity::class.java)
             startActivity(intent)
             finish()
         }
 
         val email = "ehernndez@gmail.com"
         Log.e("isValid email -->", email.isValidEmail().toString())
+
     }
 
     override fun onStart() {
@@ -57,4 +64,5 @@ class OnBoardingActivity : AppCompatActivity() {
 }
 
 // extension that verify if an email is valid
-fun String.isValidEmail() = isNotEmpty() && android.util.Patterns.EMAIL_ADDRESS.matcher(this).matches()
+fun String.isValidEmail() =
+    isNotEmpty() && android.util.Patterns.EMAIL_ADDRESS.matcher(this).matches()

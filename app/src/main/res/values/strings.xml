@@ -14,4 +14,5 @@
     <string name="txt_lastname">Apellidos</string>
     <string name="fecha_de_nacimiento">Fecha de nacimiento</string>
     <string name="txt_email">Correo electrónico</string>
+    <string name="txt_tems_conditions">Aceptar términos y condiciones</string>
 </resources>
