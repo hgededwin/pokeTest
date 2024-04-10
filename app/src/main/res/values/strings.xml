@@ -6,7 +6,6 @@
     <string name="txt_have_account">¿Ya tienes una cuenta, haz click aquí</string>
     <string name="btn_back">Regresar</string>
     <string name="btn_next">Siguiente</string>
-    <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="txt_create_account">Crear cuenta</string>
     <string name="txt_add_next_data">Ingresa los siguientes datos:</string>
@@ -15,4 +14,9 @@
     <string name="fecha_de_nacimiento">Fecha de nacimiento</string>
     <string name="txt_email">Correo electrónico</string>
     <string name="txt_tems_conditions">Aceptar términos y condiciones</string>
+    <string name="txt_url">https://www.google.com</string>
+    <string name="txt_title_verify_email">Verifica tu correo electrónico</string>
+    <string name="txt_subtitle_verify_code">Hemos enviado un código de verificación a tu correo. Ayúdanos a ingresarlo para poder continuar.</string>
+    <string name="txt_get_verification_code">Código de verificación</string>
+    <string name="txt_btn_sent_code_again">Reenviar código</string>
 </resources>
