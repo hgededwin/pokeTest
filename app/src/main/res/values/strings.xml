@@ -19,4 +19,13 @@
     <string name="txt_subtitle_verify_code">Hemos enviado un código de verificación a tu correo. Ayúdanos a ingresarlo para poder continuar.</string>
     <string name="txt_get_verification_code">Código de verificación</string>
     <string name="txt_btn_sent_code_again">Reenviar código</string>
+    <string name="txt_tittle_create_password">Crea una contraseña de acceso</string>
+    <string name="txt_create_password">Crea una contraseña que cumpla con las siguientes reglas:</string>
+    <string name="txt_eight_characters">8 Caracteres</string>
+    <string name="txt_a_number">Al menos un número</string>
+    <string name="txt_a_special_character">Al menos un caracter especial</string>
+    <string name="txt_a_lowercase">Al menos una minúscula</string>
+    <string name="txt_a_uppercase">Al menos una mayúscula</string>
+    <string name="txt_password">Contraseña</string>
+    <string name="txt_repeat_password">Confirmar contraseña</string>
 </resources>

@@ -1,4 +1,4 @@
-package com.ehernndez.poketest
+package com.ehernndez.poketest.utils
 
 
 // extension that verify if an email is valid
