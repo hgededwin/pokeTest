@@ -44,10 +44,11 @@ class VerificationCodeActivity : AppCompatActivity() {
             override fun afterTextChanged(s: Editable?) {
                 if (edtxtVerificationCode.text!!.length != 6) {
                     containerVerificationCode.error = "El código de seguridad debe ser de 6 dígitos"
+                    Utils().enableButton(this@VerificationCodeActivity, btnNext, false)
                 } else {
                     containerVerificationCode.error = null
+                    Utils().enableButton(this@VerificationCodeActivity, btnNext, true)
                 }
-                validateVerificationCode()
             }
         })
 
@@ -61,15 +62,6 @@ class VerificationCodeActivity : AppCompatActivity() {
             val intent = Intent(this@VerificationCodeActivity, CreatePasswordActivity::class.java)
             startActivity(intent)
             finish()
-        }
-    }
-
-    private fun validateVerificationCode() {
-        // we have to validate that verificationCode input is not empty
-        if (edtxtVerificationCode.text!!.isEmpty()) {
-            Utils().enableButton(this, btnNext, false)
-        } else {
-            Utils().enableButton(this, btnNext, false)
         }
     }
 
