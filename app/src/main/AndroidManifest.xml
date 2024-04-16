@@ -22,9 +22,6 @@
             android:name=".VerificationCodeActivity"
             android:exported="false" />
         <activity
-            android:name=".TermsAndConditionsWebViewClient"
-            android:exported="false" />
-        <activity
             android:name=".TermsAndConditionsActivity"
             android:exported="false" />
         <activity
