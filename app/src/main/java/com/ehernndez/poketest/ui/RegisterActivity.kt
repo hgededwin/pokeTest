@@ -6,6 +6,7 @@ import android.text.Editable
 import android.text.TextWatcher
 import android.util.Log
 import android.widget.Button
+import android.widget.ImageView
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
@@ -13,6 +14,7 @@ import com.ehernndez.poketest.R
 import com.ehernndez.poketest.data.persintetData.Data
 import com.ehernndez.poketest.utils.DateValidatorRange
 import com.ehernndez.poketest.utils.isValidEmail
+import com.google.android.material.appbar.MaterialToolbar
 import com.google.android.material.datepicker.CalendarConstraints
 import com.google.android.material.datepicker.MaterialDatePicker
 import com.google.android.material.materialswitch.MaterialSwitch
@@ -51,7 +53,6 @@ class RegisterActivity : AppCompatActivity() {
         containerEdtxtLastName = findViewById(R.id.container_edtxt_lastname)
         edtxtLastName = findViewById(R.id.edtxt_lastname)
         txtTermsAndConditions = findViewById(R.id.txt_terms_conditions)
-
 
         edtxtBornDate.setOnClickListener {
             validateBornDate()
@@ -138,10 +139,17 @@ class RegisterActivity : AppCompatActivity() {
         }
 
         btnNext.setOnClickListener {
-            // Toast.makeText(this, "El botón ha sido habilitado", Toast.LENGTH_LONG).show()
+            saveDataUser()
             val intent = Intent(this@RegisterActivity, VerificationCodeActivity::class.java)
             startActivity(intent)
         }
+    }
+
+    private fun saveDataUser() {
+        Data.shared.userName = edtxtName.text.toString()
+        Data.shared.lastName = edtxtLastName.text.toString()
+        Data.shared.bornDate = edtxtBornDate.text.toString()
+        Data.shared.email = edtxtEmail.text.toString()
     }
 
     private fun validateBornDate() {

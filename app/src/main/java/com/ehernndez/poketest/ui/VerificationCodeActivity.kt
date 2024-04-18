@@ -9,6 +9,7 @@ import android.widget.Button
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import com.ehernndez.poketest.R
+import com.ehernndez.poketest.data.persintetData.Data
 import com.ehernndez.poketest.utils.Utils
 import com.google.android.material.textfield.TextInputEditText
 import com.google.android.material.textfield.TextInputLayout
@@ -22,6 +23,7 @@ class VerificationCodeActivity : AppCompatActivity() {
     lateinit var btnSendCodeAgain: Button
     lateinit var containerVerificationCode: TextInputLayout
     lateinit var edtxtVerificationCode: TextInputEditText
+    lateinit var txtSubtitleEmail: TextView
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_verifcation_code)
@@ -31,6 +33,11 @@ class VerificationCodeActivity : AppCompatActivity() {
         btnSendCodeAgain = findViewById(R.id.btn_send_code_again)
         containerVerificationCode = findViewById(R.id.container_edtxt_verification_code)
         edtxtVerificationCode = findViewById(R.id.edtxt_verification_code)
+        txtSubtitleEmail = findViewById(R.id.txt_subtitle)
+
+        val userEmail = Data.shared.email
+
+        txtSubtitleEmail.text = "Hemos enviado un código de verificación al correo $userEmail. Ayúdanos a ingresarlo para poder continuar."
 
         // call method to restart countdown timer
         getNewCode()

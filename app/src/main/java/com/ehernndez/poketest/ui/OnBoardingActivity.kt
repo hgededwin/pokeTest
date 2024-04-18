@@ -18,13 +18,9 @@ class OnBoardingActivity : AppCompatActivity() {
 
         btnStart = findViewById(R.id.btn_start)
 
-
-        Data.shared.isRegistered = true
-
         btnStart.setOnClickListener {
             val intent = Intent(this, RegisterActivity::class.java)
             startActivity(intent)
-            finish()
         }
 
         val email = "ehernndez@gmail.com"

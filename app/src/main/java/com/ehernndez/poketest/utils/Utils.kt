@@ -1,7 +1,10 @@
 package com.ehernndez.poketest.utils
 
+import android.app.Activity
 import android.content.Context
+import android.content.Intent
 import android.widget.Button
+import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import com.ehernndez.poketest.R
 
@@ -18,6 +21,10 @@ open class Utils {
             button.backgroundTintList =
                 ContextCompat.getColorStateList(context, R.color.btn_disabled_color)
         }
+    }
 
+    fun createIntent(context: Context, activity: Activity) {
+        val intent = Intent(context, activity::class.java)
+        context.startActivity(intent)
     }
 }

@@ -8,6 +8,7 @@ import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import com.ehernndez.poketest.R
 import com.ehernndez.poketest.data.persintetData.Data
+import com.ehernndez.poketest.utils.Utils
 import java.util.concurrent.TimeUnit
 
 @SuppressLint("CustomSplashScreen")
@@ -17,6 +18,7 @@ class SplashActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_splash)
+
         hideSplash()
     }
 
@@ -44,12 +46,10 @@ class SplashActivity : AppCompatActivity() {
 
                 Log.e("isRegistered --->", Data.shared.isRegistered.toString())
                 if (Data.shared.isRegistered) {
-                    val intent = Intent(this@SplashActivity, VerificationCodeActivity::class.java)
-                    startActivity(intent)
+                    Utils().createIntent(this@SplashActivity, LoginActivity())
                     finish()
                 } else {
-                    val intent = Intent(this@SplashActivity, OnBoardingActivity::class.java)
-                    startActivity(intent)
+                    Utils().createIntent(this@SplashActivity, OnBoardingActivity())
                     finish()
                 }
             }

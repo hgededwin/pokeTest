@@ -11,6 +11,8 @@
     <color name="error_color">#D50000</color>
     <color name="btn_disabled_color">#BDBDBD</color>
 
-    <color name="primary_color_variant">#378552</color>
+    <color name="primary_color_variant">#035718</color>
+    <color name="primary_container_color_variant">#D9DDCA</color>
+    <color name="secondary_color_variant">#444F3E</color>
     
 </resources>

@@ -7,4 +7,12 @@
         <item name="colorSecondaryContainer">@color/secondary_container_color</item>
         <item name="android:colorBackground">@color/white_color</item>
     </style>
+
+    <style name="Base.Theme.PokeTest.Variant" parent="Theme.Material3.DayNight.NoActionBar">
+        <item name="colorPrimary">@color/primary_color_variant</item>
+        <item name="colorPrimaryContainer">@color/primary_container_color_variant</item>
+        <item name="colorSecondary">@color/secondary_color</item>
+        <item name="colorSecondaryContainer">@color/secondary_container_color</item>
+        <item name="android:colorBackground">@color/white_color</item>
+    </style>
 </resources>
