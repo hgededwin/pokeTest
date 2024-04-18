@@ -1,10 +1,12 @@
-package com.ehernndez.poketest
+package com.ehernndez.poketest.ui
 
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.widget.Button
 import androidx.appcompat.app.AppCompatActivity
+import com.ehernndez.poketest.R
+import com.ehernndez.poketest.data.persintetData.Data
 import com.ehernndez.poketest.utils.isValidEmail
 
 class OnBoardingActivity : AppCompatActivity() {
@@ -15,6 +17,9 @@ class OnBoardingActivity : AppCompatActivity() {
         Log.e("--->", "method onCreate was called")
 
         btnStart = findViewById(R.id.btn_start)
+
+
+        Data.shared.isRegistered = true
 
         btnStart.setOnClickListener {
             val intent = Intent(this, RegisterActivity::class.java)

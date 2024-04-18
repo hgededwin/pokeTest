@@ -1,4 +1,4 @@
-package com.ehernndez.poketest
+package com.ehernndez.poketest.ui
 
 import android.content.Intent
 import android.os.Bundle
@@ -8,6 +8,7 @@ import android.text.TextWatcher
 import android.widget.Button
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
+import com.ehernndez.poketest.R
 import com.ehernndez.poketest.utils.Utils
 import com.google.android.material.textfield.TextInputEditText
 import com.google.android.material.textfield.TextInputLayout

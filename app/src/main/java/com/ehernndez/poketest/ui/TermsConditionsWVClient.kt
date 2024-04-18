@@ -1,4 +1,4 @@
-package com.ehernndez.poketest
+package com.ehernndez.poketest.ui
 
 import android.content.Context
 import android.graphics.Bitmap

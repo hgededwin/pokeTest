@@ -1,16 +1,15 @@
-package com.ehernndez.poketest
+package com.ehernndez.poketest.ui
 
 import android.os.Bundle
-import android.service.autofill.FieldClassification.Match
 import android.text.Editable
 import android.text.TextWatcher
 import android.widget.Button
 import android.widget.ImageView
 import androidx.appcompat.app.AppCompatActivity
+import com.ehernndez.poketest.R
 import com.ehernndez.poketest.utils.Utils
 import com.google.android.material.textfield.TextInputEditText
 import com.google.android.material.textfield.TextInputLayout
-import org.w3c.dom.Text
 import java.util.Locale
 import java.util.regex.Matcher
 import java.util.regex.Pattern

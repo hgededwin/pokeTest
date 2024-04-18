@@ -28,4 +28,5 @@
     <string name="txt_a_uppercase">Al menos una mayúscula</string>
     <string name="txt_password">Contraseña</string>
     <string name="txt_repeat_password">Confirmar contraseña</string>
+    <string name="txt_version_app">V 1.0</string>
 </resources>

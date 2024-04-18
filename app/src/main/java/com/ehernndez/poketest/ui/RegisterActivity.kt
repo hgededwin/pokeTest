@@ -1,4 +1,4 @@
-package com.ehernndez.poketest
+package com.ehernndez.poketest.ui
 
 import android.content.Intent
 import android.os.Bundle
@@ -6,18 +6,16 @@ import android.text.Editable
 import android.text.TextWatcher
 import android.util.Log
 import android.widget.Button
-import android.widget.DatePicker
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
+import com.ehernndez.poketest.R
+import com.ehernndez.poketest.data.persintetData.Data
 import com.ehernndez.poketest.utils.DateValidatorRange
 import com.ehernndez.poketest.utils.isValidEmail
 import com.google.android.material.datepicker.CalendarConstraints
-import com.google.android.material.datepicker.DateValidatorPointBackward
-import com.google.android.material.datepicker.DateValidatorPointForward
 import com.google.android.material.datepicker.MaterialDatePicker
 import com.google.android.material.materialswitch.MaterialSwitch
-import com.google.android.material.snackbar.Snackbar
 import com.google.android.material.textfield.TextInputEditText
 import com.google.android.material.textfield.TextInputLayout
 import java.text.SimpleDateFormat
@@ -53,6 +51,7 @@ class RegisterActivity : AppCompatActivity() {
         containerEdtxtLastName = findViewById(R.id.container_edtxt_lastname)
         edtxtLastName = findViewById(R.id.edtxt_lastname)
         txtTermsAndConditions = findViewById(R.id.txt_terms_conditions)
+
 
         edtxtBornDate.setOnClickListener {
             validateBornDate()

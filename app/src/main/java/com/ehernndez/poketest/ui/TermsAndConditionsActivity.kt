@@ -1,12 +1,10 @@
-package com.ehernndez.poketest
+package com.ehernndez.poketest.ui
 
 import android.annotation.SuppressLint
 import android.os.Bundle
 import android.webkit.WebView
-import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
+import com.ehernndez.poketest.R
 
 class TermsAndConditionsActivity : AppCompatActivity() {
     lateinit var webViewTerms: WebView

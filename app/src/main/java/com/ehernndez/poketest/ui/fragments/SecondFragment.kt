@@ -1,4 +1,4 @@
-package com.ehernndez.poketest.fragments
+package com.ehernndez.poketest.ui.fragments
 
 import android.content.Context
 import android.os.Bundle
