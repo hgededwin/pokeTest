@@ -37,7 +37,7 @@
     <com.google.android.material.card.MaterialCardView
         android:id="@+id/card_view_login"
         android:layout_width="match_parent"
-        android:layout_height="260dp"
+        android:layout_height="240dp"
         android:layout_marginStart="25dp"
         android:layout_marginTop="-60dp"
         android:layout_marginEnd="25dp"
@@ -77,17 +77,17 @@
                     android:src="@drawable/ic_email" />
 
                 <TextView
+                    android:id="@+id/txt_email_user"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:layout_marginStart="16dp"
-                    android:text="edwin@gmail.com"
                     android:textColor="@color/gray_text_color"
                     android:textSize="18sp" />
             </LinearLayout>
 
             <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/container_edtxt_name"
+                android:id="@+id/container_edtxt_login"
                 style="?attr/textInputFilledStyle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -101,7 +101,7 @@
                 app:errorTextColor="@color/error_color">
 
                 <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/edtxt_name"
+                    android:id="@+id/edtxt_login"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:imeOptions="actionDone"
@@ -111,19 +111,14 @@
                     android:textColor="@color/primary_color_variant" />
             </com.google.android.material.textfield.TextInputLayout>
 
-            <Button
-                android:id="@+id/btn_send_code_again"
-                style="@style/Widget.Material3.Button.TextButton"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:text="@string/txt_btn_sent_code_again" />
+
         </LinearLayout>
     </com.google.android.material.card.MaterialCardView>
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:id="@+id/btn_forget_password"
         android:layout_marginTop="25dp"
         android:gravity="center"
         android:text="@string/txt_forget_password"
@@ -134,7 +129,7 @@
         app:layout_constraintTop_toBottomOf="@+id/card_view_login" />
 
     <Button
-        android:id="@+id/btn_next"
+        android:id="@+id/btn_login"
         android:layout_width="200dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"

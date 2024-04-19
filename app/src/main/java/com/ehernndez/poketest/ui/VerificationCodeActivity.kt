@@ -52,10 +52,16 @@ class VerificationCodeActivity : AppCompatActivity() {
             override fun afterTextChanged(s: Editable?) {
                 if (edtxtVerificationCode.text!!.length != 6) {
                     containerVerificationCode.error = "El código de seguridad debe ser de 6 dígitos"
-                    Utils().enableButton(this@VerificationCodeActivity, btnNext, false)
+                    Utils().enableButton(this@VerificationCodeActivity, btnNext,
+                        isEnable = false,
+                        isVariant = false
+                    )
                 } else {
                     containerVerificationCode.error = null
-                    Utils().enableButton(this@VerificationCodeActivity, btnNext, true)
+                    Utils().enableButton(this@VerificationCodeActivity, btnNext,
+                        isEnable = true,
+                        isVariant = false
+                    )
                 }
             }
         })

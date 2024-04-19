@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/item_home"
+        android:enabled="true"
+        android:icon="@drawable/ic_home"
+        android:title="Inicio" />
+
+    <item
+        android:id="@+id/item_pokedex"
+        android:enabled="true"
+        android:icon="@drawable/ic_pokedex"
+        android:title="Pokedex" />
+
+    <item
+        android:id="@+id/item_new_pokemon"
+        android:enabled="true"
+        android:icon="@drawable/ic_pokemon"
+        android:title="Pokemon" />
+</menu>

@@ -56,9 +56,17 @@ class CreatePasswordActivity : AppCompatActivity() {
         edtxtPassword.setOnFocusChangeListener { v, hasFocus ->
             if (v.hasFocus()) {
                 if (edtxtPassword.text!!.toString() == edtxtConfirmPassword.text!!.toString()) {
-                    Utils().enableButton(this@CreatePasswordActivity, btnNext, true)
+                    Utils().enableButton(
+                        this@CreatePasswordActivity, btnNext,
+                        isEnable = true,
+                        isVariant = false
+                    )
                 } else {
-                    Utils().enableButton(this@CreatePasswordActivity, btnNext, false)
+                    Utils().enableButton(
+                        this@CreatePasswordActivity, btnNext,
+                        isEnable = false,
+                        isVariant = false
+                    )
                 }
             }
         }
@@ -73,10 +81,18 @@ class CreatePasswordActivity : AppCompatActivity() {
             override fun afterTextChanged(s: Editable?) {
                 if (edtxtPassword.text.toString() == s.toString()) {
                     containerConfirmPassword.error = null
-                    Utils().enableButton(this@CreatePasswordActivity, btnNext, true)
+                    Utils().enableButton(
+                        this@CreatePasswordActivity, btnNext,
+                        isEnable = true,
+                        isVariant = false
+                    )
                 } else {
                     containerConfirmPassword.error = "La contraseña no coincide."
-                    Utils().enableButton(this@CreatePasswordActivity, btnNext, false)
+                    Utils().enableButton(
+                        this@CreatePasswordActivity, btnNext,
+                        isEnable = false,
+                        isVariant = false
+                    )
                 }
             }
         })
@@ -111,35 +127,55 @@ class CreatePasswordActivity : AppCompatActivity() {
                 imgUpperCase.setImageResource(R.drawable.ic_checked)
             } else {
                 imgUpperCase.setImageResource(R.drawable.ic_wrong)
-                Utils().enableButton(this@CreatePasswordActivity, btnNext, false)
+                Utils().enableButton(
+                    this@CreatePasswordActivity, btnNext,
+                    isEnable = false,
+                    isVariant = false
+                )
             }
 
             if (hasLowercase) {
                 imgLowerCase.setImageResource(R.drawable.ic_checked)
             } else {
                 imgLowerCase.setImageResource(R.drawable.ic_wrong)
-                Utils().enableButton(this@CreatePasswordActivity, btnNext, false)
+                Utils().enableButton(
+                    this@CreatePasswordActivity, btnNext,
+                    isEnable = false,
+                    isVariant = false
+                )
             }
 
             if (letter.toString().length == hasEightCharacters || edtxtConfirmPassword.text!!.length == hasEightCharacters) {
                 imgEightCharacters.setImageResource(R.drawable.ic_checked)
             } else {
                 imgEightCharacters.setImageResource(R.drawable.ic_wrong)
-                Utils().enableButton(this@CreatePasswordActivity, btnNext, false)
+                Utils().enableButton(
+                    this@CreatePasswordActivity, btnNext,
+                    isEnable = false,
+                    isVariant = false
+                )
             }
 
             if (hasADigit.find()) {
                 imgANumber.setImageResource(R.drawable.ic_checked)
             } else {
                 imgANumber.setImageResource(R.drawable.ic_wrong)
-                Utils().enableButton(this@CreatePasswordActivity, btnNext, false)
+                Utils().enableButton(
+                    this@CreatePasswordActivity, btnNext,
+                    isEnable = false,
+                    isVariant = false
+                )
             }
 
             if (hasSpecialCharacter.find()) {
                 imgSpecialCharacter.setImageResource(R.drawable.ic_checked)
             } else {
                 imgSpecialCharacter.setImageResource(R.drawable.ic_wrong)
-                Utils().enableButton(this@CreatePasswordActivity, btnNext, false)
+                Utils().enableButton(
+                    this@CreatePasswordActivity, btnNext,
+                    isEnable = false,
+                    isVariant = false
+                )
             }
 
             if (edtxtPassword.text!!.isEmpty()) {

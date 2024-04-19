@@ -11,11 +11,16 @@ import com.ehernndez.poketest.R
 open class Utils {
     // we can use this function to enable and disable the button.
     // Is necessary set the parameter Button to access to the attributes of the class
-    fun enableButton(context: Context, button: Button, isEnable: Boolean) {
+    fun enableButton(context: Context, button: Button, isEnable: Boolean, isVariant: Boolean) {
         if (isEnable) {
             button.isEnabled = true
-            button.backgroundTintList =
-                ContextCompat.getColorStateList(context, R.color.primary_color)
+            if (isVariant) {
+                button.backgroundTintList =
+                    ContextCompat.getColorStateList(context, R.color.primary_color_variant)
+            } else {
+                button.backgroundTintList =
+                    ContextCompat.getColorStateList(context, R.color.primary_color)
+            }
         } else {
             button.isEnabled = false
             button.backgroundTintList =
