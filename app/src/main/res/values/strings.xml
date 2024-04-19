@@ -29,4 +29,6 @@
     <string name="txt_password">Contraseña</string>
     <string name="txt_repeat_password">Confirmar contraseña</string>
     <string name="txt_version_app">V 1.0</string>
+    <string name="txt_forget_password">olvidé mi contraseña</string>
+    <string name="txt_login">Iniciar sesión</string>
 </resources>

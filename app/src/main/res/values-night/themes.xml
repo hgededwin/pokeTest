@@ -15,4 +15,8 @@
         <item name="colorSecondaryContainer">@color/secondary_container_color</item>
         <item name="android:colorBackground">@color/white_color</item>
     </style>
+
+    <style name="Theme.PokeTest.Toolbar.Title" parent="TextAppearance.Material3.ActionBar.Title">
+        <item name="android:textSize">20sp</item>
+    </style>
 </resources>

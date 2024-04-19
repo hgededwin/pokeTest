@@ -5,15 +5,17 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.OnBoardingActivity">
+    tools:context=".ui.SuccessRegisterActivity">
 
     <TextView
         android:id="@+id/txt_title"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="26dp"
-        android:autoSizeTextType="uniform"
-        android:text="@string/txt_title_pokemon"
+        android:layout_marginStart="25dp"
+        android:layout_marginTop="25dp"
+        android:layout_marginEnd="25dp"
+        android:gravity="center"
+        android:text="¡Bienvenido entrenador!"
         android:textColor="@color/black_color"
         android:textSize="35sp"
         android:textStyle="bold"
@@ -22,15 +24,14 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <ImageView
-        android:id="@+id/img_pokeball"
-        android:layout_width="220dp"
-        android:layout_height="220dp"
-        android:layout_marginTop="25dp"
-        android:src="@drawable/img_pokeball"
+        android:id="@+id/img_togepi"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:layout_marginTop="16dp"
+        android:src="@drawable/img_togepi"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txt_title" />
+        app:layout_constraintTop_toBottomOf="@id/txt_title" />
 
     <TextView
         android:id="@+id/txt_detail_app"
@@ -40,12 +41,12 @@
         android:layout_marginTop="50dp"
         android:layout_marginEnd="25dp"
         android:gravity="center"
-        android:text="@string/txt_detail_app"
+        android:text="A partir de ahora podrás tener información precisa sobre los Pokémon que registres, así como ciertas estrategias para poder capturar nuevos."
         android:textColor="@color/gray_text_color"
         android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/img_pokeball" />
+        app:layout_constraintTop_toBottomOf="@+id/img_togepi" />
 
     <Button
         android:id="@+id/btn_start"
@@ -61,4 +62,5 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
