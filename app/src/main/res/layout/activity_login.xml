@@ -95,6 +95,8 @@
                 android:layout_marginTop="25dp"
                 android:layout_marginEnd="25dp"
                 android:hint="@string/txt_password"
+                app:endIconTint="@color/black_color"
+                android:textColorHint="@color/black_color"
                 app:boxBackgroundColor="@color/filled_background_input_variant"
                 app:endIconMode="password_toggle"
                 app:errorEnabled="true"

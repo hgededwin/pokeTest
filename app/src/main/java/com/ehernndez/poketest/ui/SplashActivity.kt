@@ -20,6 +20,8 @@ class SplashActivity : AppCompatActivity() {
         setContentView(R.layout.activity_splash)
 
         hideSplash()
+
+        Data.shared.isRegistered = true
     }
 
    private fun hideSplash() {

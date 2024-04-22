@@ -11,8 +11,10 @@
     <color name="error_color">#D50000</color>
     <color name="btn_disabled_color">#BDBDBD</color>
 
-    <color name="filled_background_input_variant">#CBCDBC</color>
+    <color name="background_navigation_bottom_color">#EBEEF4</color>
+    <color name="item_icon_navigation_color">#616161</color>
 
+    <color name="filled_background_input_variant">#CBCDBC</color>
     <color name="primary_color_variant">#035718</color>
     <color name="primary_container_color_variant">#D9DDCA</color>
     <color name="secondary_color_variant">#444F3E</color>
