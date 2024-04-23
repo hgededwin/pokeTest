@@ -5,12 +5,9 @@ import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.View
-import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
 import com.ehernndez.poketest.R
-import java.util.UUID
 
-class FirstFragment : Fragment(R.layout.fragment_first) {
+class HomeFragment : Fragment(R.layout.fragment_home) {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         Log.e("[FIRST FRAGMENT --->", "method onViewCreated was called")

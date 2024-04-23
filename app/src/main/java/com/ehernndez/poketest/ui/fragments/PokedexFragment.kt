@@ -7,7 +7,7 @@ import androidx.fragment.app.Fragment
 import android.view.View
 import com.ehernndez.poketest.R
 
-class SecondFragment : Fragment(R.layout.fragment_second) {
+class PokedexFragment : Fragment(R.layout.fragment_pokedex) {
 
     override fun onAttach(context: Context) {
         super.onAttach(context)

@@ -4,17 +4,17 @@
         android:id="@+id/item_home"
         android:enabled="true"
         android:icon="@drawable/ic_home"
-        android:title="Inicio" />
+        android:title="@string/txt_nav_home" />
 
     <item
         android:id="@+id/item_pokedex"
         android:enabled="true"
         android:icon="@drawable/ic_pokedex"
-        android:title="Pokedex" />
+        android:title="@string/txt_nav_pokedex" />
 
     <item
         android:id="@+id/item_new_pokemon"
         android:enabled="true"
         android:icon="@drawable/ic_pokemon"
-        android:title="Pokemon" />
+        android:title="@string/txt_nav_pokemon" />
 </menu>
