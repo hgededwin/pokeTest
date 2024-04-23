@@ -1,10 +1,11 @@
-package com.ehernndez.poketest.ui
+package com.ehernndez.poketest.ui.register
 
 import android.annotation.SuppressLint
 import android.os.Bundle
 import android.webkit.WebView
 import androidx.appcompat.app.AppCompatActivity
 import com.ehernndez.poketest.R
+import com.ehernndez.poketest.utils.TermsConditionsWVClient
 
 class TermsAndConditionsActivity : AppCompatActivity() {
     lateinit var webViewTerms: WebView

@@ -1,4 +1,4 @@
-package com.ehernndez.poketest.ui
+package com.ehernndez.poketest.ui.register
 
 import android.content.Intent
 import android.os.Bundle
@@ -6,7 +6,6 @@ import android.util.Log
 import android.widget.Button
 import androidx.appcompat.app.AppCompatActivity
 import com.ehernndez.poketest.R
-import com.ehernndez.poketest.data.persintetData.Data
 import com.ehernndez.poketest.utils.isValidEmail
 
 class OnBoardingActivity : AppCompatActivity() {

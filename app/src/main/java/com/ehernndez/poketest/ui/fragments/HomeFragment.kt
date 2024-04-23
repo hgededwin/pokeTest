@@ -1,15 +1,28 @@
 package com.ehernndez.poketest.ui.fragments
 
 import android.content.Context
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.View
 import com.ehernndez.poketest.R
+import com.ehernndez.poketest.ui.LoginActivity
+import com.google.android.material.card.MaterialCardView
 
 class HomeFragment : Fragment(R.layout.fragment_home) {
+   // lateinit var cardView: MaterialCardView
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+       // adding intent from fragment to new activity
+      /*  cardView = view.findViewById(R.id.card_view_home)
+        cardView.setOnClickListener {
+            val intent = Intent(activity, LoginActivity::class.java)
+            startActivity(intent)
+            requireActivity().finish()
+        } */
+
         Log.e("[FIRST FRAGMENT --->", "method onViewCreated was called")
     }
 

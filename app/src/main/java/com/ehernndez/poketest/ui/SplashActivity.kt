@@ -1,13 +1,13 @@
 package com.ehernndez.poketest.ui
 
 import android.annotation.SuppressLint
-import android.content.Intent
 import android.os.Bundle
 import android.os.CountDownTimer
 import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import com.ehernndez.poketest.R
 import com.ehernndez.poketest.data.persintetData.Data
+import com.ehernndez.poketest.ui.register.OnBoardingActivity
 import com.ehernndez.poketest.utils.Utils
 import java.util.concurrent.TimeUnit
 

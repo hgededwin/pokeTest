@@ -1,4 +1,4 @@
-package com.ehernndez.poketest.ui
+package com.ehernndez.poketest.ui.register
 
 import android.content.Intent
 import android.os.Bundle

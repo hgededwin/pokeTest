@@ -5,12 +5,10 @@ import android.text.Editable
 import android.text.TextWatcher
 import android.widget.Button
 import android.widget.TextView
-import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
 import com.ehernndez.poketest.R
 import com.ehernndez.poketest.data.persintetData.Data
+import com.ehernndez.poketest.ui.home.HomeActivity
 import com.ehernndez.poketest.utils.Utils
 import com.google.android.material.textfield.TextInputEditText
 import com.google.android.material.textfield.TextInputLayout

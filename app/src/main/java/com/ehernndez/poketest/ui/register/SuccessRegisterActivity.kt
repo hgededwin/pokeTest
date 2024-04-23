@@ -1,12 +1,10 @@
-package com.ehernndez.poketest.ui
+package com.ehernndez.poketest.ui.register
 
 import android.os.Bundle
 import android.widget.Button
-import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
 import com.ehernndez.poketest.R
+import com.ehernndez.poketest.ui.LoginActivity
 import com.ehernndez.poketest.utils.Utils
 
 class SuccessRegisterActivity : AppCompatActivity() {

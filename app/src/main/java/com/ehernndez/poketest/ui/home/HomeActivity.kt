@@ -1,4 +1,4 @@
-package com.ehernndez.poketest.ui
+package com.ehernndez.poketest.ui.home
 
 import android.os.Bundle
 import android.widget.Toast
@@ -8,6 +8,7 @@ import com.ehernndez.poketest.R
 import com.ehernndez.poketest.ui.fragments.HomeFragment
 import com.ehernndez.poketest.ui.fragments.PokedexFragment
 import com.ehernndez.poketest.ui.fragments.PokemonFragment
+import com.ehernndez.poketest.utils.Utils
 import com.google.android.material.appbar.MaterialToolbar
 import com.google.android.material.bottomnavigation.BottomNavigationView
 
@@ -48,8 +49,7 @@ class HomeActivity : AppCompatActivity() {
         toolbar.setOnMenuItemClickListener { menuItem ->
             when(menuItem.itemId) {
                 R.id.item_settings -> {
-                    Toast.makeText(this@HomeActivity, "Settings section is not working", Toast.LENGTH_LONG).show()
-
+                    Utils().createIntent(this@HomeActivity, SettingsActivity())
                     true
                 }
 

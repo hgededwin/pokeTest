@@ -1,4 +1,4 @@
-package com.ehernndez.poketest.ui
+package com.ehernndez.poketest.ui.register
 
 import android.content.Intent
 import android.os.Bundle
@@ -6,7 +6,6 @@ import android.text.Editable
 import android.text.TextWatcher
 import android.util.Log
 import android.widget.Button
-import android.widget.ImageView
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
@@ -14,7 +13,6 @@ import com.ehernndez.poketest.R
 import com.ehernndez.poketest.data.persintetData.Data
 import com.ehernndez.poketest.utils.DateValidatorRange
 import com.ehernndez.poketest.utils.isValidEmail
-import com.google.android.material.appbar.MaterialToolbar
 import com.google.android.material.datepicker.CalendarConstraints
 import com.google.android.material.datepicker.MaterialDatePicker
 import com.google.android.material.materialswitch.MaterialSwitch
