@@ -31,4 +31,10 @@
     <string name="txt_version_app">V 1.0</string>
     <string name="txt_forget_password">olvidé mi contraseña</string>
     <string name="txt_login">Iniciar sesión</string>
+    <string name="txt_nav_home">Inicio</string>
+    <string name="txt_nav_pokedex">Pokedex</string>
+    <string name="txt_nav_pokemon">Pokemon</string>
+    <string name="txt_title_pokedex">Pokedex</string>
+    <string name="txt_home">Inicio</string>
+    <string name="txt_pokemon">Pokémon</string>
 </resources>
