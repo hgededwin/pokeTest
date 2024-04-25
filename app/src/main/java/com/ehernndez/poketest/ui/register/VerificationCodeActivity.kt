@@ -9,7 +9,7 @@ import android.widget.Button
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import com.ehernndez.poketest.R
-import com.ehernndez.poketest.data.persintetData.Data
+import com.ehernndez.poketest.data.persistantData.Data
 import com.ehernndez.poketest.utils.Utils
 import com.google.android.material.textfield.TextInputEditText
 import com.google.android.material.textfield.TextInputLayout

@@ -1,7 +1,11 @@
+import com.android.build.api.dsl.Packaging
+
 plugins {
     alias(libs.plugins.androidApplication)
     alias(libs.plugins.jetbrainsKotlinAndroid)
+    id("kotlin-kapt")
 }
+
 
 android {
     namespace = "com.ehernndez.poketest"
@@ -36,6 +40,10 @@ android {
 }
 
 dependencies {
+
+    implementation(libs.androidx.room.ktx)
+    annotationProcessor(libs.room.compiler)
+    kapt("androidx.room:room-compiler:2.6.1")
 
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)

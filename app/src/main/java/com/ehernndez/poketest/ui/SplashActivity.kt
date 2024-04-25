@@ -6,7 +6,7 @@ import android.os.CountDownTimer
 import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import com.ehernndez.poketest.R
-import com.ehernndez.poketest.data.persintetData.Data
+import com.ehernndez.poketest.data.persistantData.Data
 import com.ehernndez.poketest.ui.register.OnBoardingActivity
 import com.ehernndez.poketest.utils.Utils
 import java.util.concurrent.TimeUnit
@@ -15,13 +15,15 @@ import java.util.concurrent.TimeUnit
 class SplashActivity : AppCompatActivity() {
     lateinit var timer: CountDownTimer
 
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_splash)
 
         hideSplash()
-
         Data.shared.isRegistered = true
+
+        deleteDatabase("table_test")
     }
 
    private fun hideSplash() {

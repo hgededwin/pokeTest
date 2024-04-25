@@ -1,4 +1,4 @@
-package com.ehernndez.poketest.data.persintetData
+package com.ehernndez.poketest.data.persistantData
 
 import android.content.Context
 import android.content.SharedPreferences

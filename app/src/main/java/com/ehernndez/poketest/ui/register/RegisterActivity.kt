@@ -10,7 +10,7 @@ import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import com.ehernndez.poketest.R
-import com.ehernndez.poketest.data.persintetData.Data
+import com.ehernndez.poketest.data.persistantData.Data
 import com.ehernndez.poketest.utils.DateValidatorRange
 import com.ehernndez.poketest.utils.isValidEmail
 import com.google.android.material.datepicker.CalendarConstraints
