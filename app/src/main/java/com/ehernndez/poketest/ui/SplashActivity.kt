@@ -22,8 +22,6 @@ class SplashActivity : AppCompatActivity() {
 
         hideSplash()
         Data.shared.isRegistered = true
-
-        deleteDatabase("table_test")
     }
 
    private fun hideSplash() {
