@@ -22,6 +22,8 @@ class SplashActivity : AppCompatActivity() {
 
         hideSplash()
         Data.shared.isRegistered = true
+
+       // deleteDatabase("pokeTest_database")
     }
 
    private fun hideSplash() {

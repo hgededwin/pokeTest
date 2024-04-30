@@ -37,4 +37,10 @@
     <string name="txt_title_pokedex">Pokedex</string>
     <string name="txt_home">Inicio</string>
     <string name="txt_pokemon">Pokémon</string>
+    <string name="txt_new_pokemon">Nuevo Pókemon</string>
+    <string name="txt_subtitle_new_pokemon">Ingresa los siguientes datos para registrar un nuevo Pókemon</string>
+    <string name="txt_pokemon_name">Nombre del Pókemon</string>
+    <string name="txt_add_new_pokemon">Agregar nuevo Pókemon</string>
+    <string name="txt_type">Tipo:</string>
+    <string name="txt_add_pokemon">Agregar</string>
 </resources>
