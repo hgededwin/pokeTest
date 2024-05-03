@@ -1,8 +1,11 @@
 package com.ehernndez.poketest.ui.home
 
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.widget.Toast
+import androidx.activity.result.ActivityResultLauncher
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import com.ehernndez.poketest.R
@@ -54,9 +57,9 @@ class HomeActivity : AppCompatActivity() {
         }
 
         toolbar.setOnMenuItemClickListener { menuItem ->
-            when(menuItem.itemId) {
+            when (menuItem.itemId) {
                 R.id.item_settings -> {
-                   Utils().createIntent(this@HomeActivity, SettingsActivity())
+                    Utils().createIntent(this@HomeActivity, SettingsActivity())
 
                     // Calling launch coroutine function
                     // helloWorldCoroutine()
@@ -111,7 +114,12 @@ class HomeActivity : AppCompatActivity() {
             Log.e("[Coroutines] --->", "Dispatches.Default --> ${Thread.currentThread().name}")
         }
 
-        launch(Dispatchers.Main) { Log.e("[Coroutines] --->", "Dispatchers.Main --> ${Thread.currentThread().name}")  }
+        launch(Dispatchers.Main) {
+            Log.e(
+                "[Coroutines] --->",
+                "Dispatchers.Main --> ${Thread.currentThread().name}"
+            )
+        }
     }
 
     suspend fun doSomething() {
