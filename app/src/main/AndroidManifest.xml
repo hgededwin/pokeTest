@@ -24,9 +24,9 @@
         tools:targetApi="34">
         <activity
             android:name=".ui.AddNewPokemonActivity"
+            android:exported="false"
             android:screenOrientation="portrait"
-            android:theme="@style/Base.Theme.PokeTest.Variant"
-            android:exported="false" />
+            android:theme="@style/Base.Theme.PokeTest.Variant" />
         <activity
             android:name=".ui.home.SettingsActivity"
             android:exported="false"
