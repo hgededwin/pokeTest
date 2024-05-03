@@ -1,4 +1,4 @@
-package com.ehernndez.poketest.ui.fragments
+package com.ehernndez.poketest.ui.home.fragments
 
 import android.content.Context
 import android.content.Intent

@@ -9,9 +9,9 @@ import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import com.ehernndez.poketest.R
-import com.ehernndez.poketest.ui.fragments.HomeFragment
-import com.ehernndez.poketest.ui.fragments.PokedexFragment
-import com.ehernndez.poketest.ui.fragments.PokemonFragment
+import com.ehernndez.poketest.ui.home.fragments.HomeFragment
+import com.ehernndez.poketest.ui.home.fragments.PokedexFragment
+import com.ehernndez.poketest.ui.home.fragments.PokemonFragment
 import com.ehernndez.poketest.utils.Utils
 import com.google.android.material.appbar.MaterialToolbar
 import com.google.android.material.bottomnavigation.BottomNavigationView

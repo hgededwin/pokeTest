@@ -5,7 +5,7 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.AddNewPokemonActivity">
+    tools:context=".ui.pokemon.AddNewPokemonActivity">
 
     <com.google.android.material.appbar.AppBarLayout
         android:id="@+id/appbar_layout"
@@ -23,6 +23,7 @@
 
             <com.google.android.material.appbar.MaterialToolbar
                 android:layout_width="match_parent"
+                android:id="@+id/toolbar"
                 android:layout_height="?attr/actionBarSize"
                 app:title="@string/txt_add_new_pokemon">
 

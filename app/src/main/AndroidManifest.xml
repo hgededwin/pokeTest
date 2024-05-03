@@ -23,7 +23,10 @@
         android:usesCleartextTraffic="true"
         tools:targetApi="34">
         <activity
-            android:name=".ui.AddNewPokemonActivity"
+            android:name=".ui.pokemon.UpdatePokemonActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.pokemon.AddNewPokemonActivity"
             android:exported="false"
             android:screenOrientation="portrait"
             android:theme="@style/Base.Theme.PokeTest.Variant" />

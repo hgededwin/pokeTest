@@ -1,4 +1,4 @@
-package com.ehernndez.poketest.ui.fragments
+package com.ehernndez.poketest.ui.home.fragments
 
 import android.content.Context
 import android.content.Intent
@@ -15,8 +15,8 @@ import com.ehernndez.poketest.R
 import com.ehernndez.poketest.data.persistantData.Data
 import com.ehernndez.poketest.data.room.Pokemon
 import com.ehernndez.poketest.data.room.PokemonDB
-import com.ehernndez.poketest.ui.AddNewPokemonActivity
-import com.google.android.material.card.MaterialCardView
+import com.ehernndez.poketest.ui.pokemon.AddNewPokemonActivity
+import com.ehernndez.poketest.utils.Utils
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.android.material.snackbar.BaseTransientBottomBar.BaseCallback
 import com.google.android.material.snackbar.Snackbar
@@ -71,13 +71,18 @@ class PokemonFragment : Fragment(R.layout.fragment_pokemon) {
             val currentPokemon = listViewPokemon.getItemAtPosition(position)
             MaterialAlertDialogBuilder(this.requireContext())
                 .setTitle("PokeTest")
-                .setMessage("Has seleccionado el pokemon $currentPokemon, ¿deseas eliminarlo?")
+                .setMessage("Has seleccionado a $currentPokemon. ¿Qué deseas hacer con él?")
                 .setPositiveButton("Eliminar") { dialog, which ->
                     pokemonArrayList.removeAt(position)
                     adapter.notifyDataSetChanged()
                     dialog.dismiss()
 
-                    showSnackbar(view, currentPokemon.toString(), this.requireContext())
+                    showSnackbar(view, currentPokemon.toString())
+                }
+                .setNeutralButton("Actualizar") { dialog, which ->
+                    val intent = Intent(requireContext(), AddNewPokemonActivity::class.java)
+                    intent.putExtra("UPDATE_FLOW", true)
+                    startActivity(intent)
                 }
                 .setNegativeButton("Cancelar") { dialog, which ->
                     dialog.dismiss()
@@ -87,7 +92,7 @@ class PokemonFragment : Fragment(R.layout.fragment_pokemon) {
         }
     }
 
-    fun showSnackbar(view: View, pokemon: String, context: Context) {
+    fun showSnackbar(view: View, pokemon: String) {
         Snackbar.make(view, "Has eliminado el pokemon $pokemon", Snackbar.LENGTH_LONG)
             .setAction("Deshacer") {
                 getPokemonList(this.requireContext())
@@ -98,14 +103,18 @@ class PokemonFragment : Fragment(R.layout.fragment_pokemon) {
                 override fun onDismissed(transientBottomBar: Snackbar?, event: Int) {
                     super.onDismissed(transientBottomBar, event)
                     if (!isUndo) {
-                        Toast.makeText(context, "register has eliminated", Toast.LENGTH_LONG).show()
-                    } else {
-                        Toast.makeText(context, "register has not eliminated", Toast.LENGTH_LONG).show()
+                        removePokemonFromDB(pokemon)
+                        isUndo = false
                     }
                 }
             })
             .show()
     }
 
-    
+    fun removePokemonFromDB(pokemon: String) {
+        lifecycleScope.launch {
+            room.daoPokemon().deletePokemonInfo(pokemon)
+            getPokemonList(requireContext())
+        }
+    }
 }
