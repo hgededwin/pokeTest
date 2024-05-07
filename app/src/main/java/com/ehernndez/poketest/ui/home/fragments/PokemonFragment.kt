@@ -28,8 +28,9 @@ class PokemonFragment : Fragment(R.layout.fragment_pokemon) {
     lateinit var listViewPokemon: ListView
     lateinit var adapter: ArrayAdapter<String>
 
-    var pokemonArrayList = arrayListOf<String>()
-    var pokemonList = mutableListOf<Pokemon>()
+    var pokemonArrayList = arrayListOf<String>() // {"charmander", "pikachu", "")
+    var pokemonList = mutableListOf<Pokemon>() // {Pokemon("pikachu", "fuego"), POkemon)--
+    var pokemonSelected = Pokemon("", "")
     var isUndo = false
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -54,18 +55,6 @@ class PokemonFragment : Fragment(R.layout.fragment_pokemon) {
         Log.e("pokemon list -->", pokemonList.toString())
     }
 
-    fun getPokemonList(context: Context) {
-        lifecycleScope.launch {
-            pokemonList = room.daoPokemon().getPokemonList()
-            pokemonArrayList = ArrayList(pokemonList.map { it.pokemonName })
-
-            adapter = ArrayAdapter(context, R.layout.dropdown_item, pokemonArrayList)
-            listViewPokemon.adapter = adapter
-            Log.e("---> PokemonList", pokemonList.toString())
-            Log.e("---> PokemonArrayList", pokemonArrayList.toString())
-        }
-    }
-
     fun deletePokemon() {
         listViewPokemon.setOnItemLongClickListener { parent, view, position, id ->
             val currentPokemon = listViewPokemon.getItemAtPosition(position)
@@ -80,9 +69,7 @@ class PokemonFragment : Fragment(R.layout.fragment_pokemon) {
                     showSnackbar(view, currentPokemon.toString())
                 }
                 .setNeutralButton("Actualizar") { dialog, which ->
-                    val intent = Intent(requireContext(), AddNewPokemonActivity::class.java)
-                    intent.putExtra("UPDATE_FLOW", true)
-                    startActivity(intent)
+                    getPokemon(currentPokemon.toString())
                 }
                 .setNegativeButton("Cancelar") { dialog, which ->
                     dialog.dismiss()
@@ -109,6 +96,32 @@ class PokemonFragment : Fragment(R.layout.fragment_pokemon) {
                 }
             })
             .show()
+    }
+
+    fun getPokemonList(context: Context) {
+        lifecycleScope.launch {
+            pokemonList = room.daoPokemon().getPokemonList()
+            pokemonArrayList = ArrayList(pokemonList.map { it.pokemonName })
+
+            adapter = ArrayAdapter(context, R.layout.dropdown_item, pokemonArrayList)
+            listViewPokemon.adapter = adapter
+            Log.e("---> PokemonList", pokemonList.toString())
+            Log.e("---> PokemonArrayList", pokemonArrayList.toString())
+        }
+    }
+
+    fun getPokemon(pokemon: String) {
+        lifecycleScope.launch {
+            pokemonSelected = room.daoPokemon().getPokemonSelected(pokemon)
+            val pokemonName = pokemonSelected.pokemonName
+            val pokemonType = pokemonSelected.pokemonType
+
+            val intent = Intent(requireContext(), AddNewPokemonActivity::class.java)
+            intent.putExtra(getString(R.string.txt_update_screen_flow_tag), true)
+            intent.putExtra(getString(R.string.txt_pokemon_name_selected_flag), pokemonName)
+            intent.putExtra(getString(R.string.txt_pokemon_type_selected_flag), pokemonType)
+            startActivity(intent)
+        }
     }
 
     fun removePokemonFromDB(pokemon: String) {

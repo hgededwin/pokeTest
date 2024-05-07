@@ -8,6 +8,8 @@ import android.view.View
 import android.widget.ArrayAdapter
 import android.widget.AutoCompleteTextView
 import android.widget.Button
+import android.widget.ImageView
+import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
 import com.ehernndez.poketest.R
@@ -15,7 +17,9 @@ import com.ehernndez.poketest.data.persistantData.Data
 import com.ehernndez.poketest.data.room.Pokemon
 import com.ehernndez.poketest.data.room.PokemonDB
 import com.ehernndez.poketest.utils.Utils
+import com.ehernndez.poketest.utils.capitalizeFirstLetterOfWord
 import com.google.android.material.appbar.MaterialToolbar
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.android.material.snackbar.Snackbar
 import com.google.android.material.textfield.TextInputEditText
 import com.google.android.material.textfield.TextInputLayout
@@ -30,9 +34,15 @@ class AddNewPokemonActivity : AppCompatActivity() {
     lateinit var btnAddPokemon: Button
     lateinit var toolbar: MaterialToolbar
     lateinit var room: PokemonDB
+    lateinit var txtSubtitle: TextView
+    lateinit var pokemonNameSelected: String
+    lateinit var pokemonTypeSelected: String
+    lateinit var btnBack: ImageView
+
     var pokemonTypes = listOf<String>()
     var pokemonList = mutableListOf<Pokemon>()
-    var screenFlow = false
+    var isUpdateScreenFlow = false
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -44,11 +54,24 @@ class AddNewPokemonActivity : AppCompatActivity() {
         containerDropdownPokemonType = findViewById(R.id.container_dropdown_type)
         btnAddPokemon = findViewById(R.id.btn_add_pokemon)
         toolbar = findViewById(R.id.toolbar)
+        txtSubtitle = findViewById(R.id.txt_subtitle)
+        btnBack = findViewById(R.id.btn_back)
 
-        screenFlow = intent.getBooleanExtra("UPDATE_FLOW", false)
+        isUpdateScreenFlow =
+            intent.getBooleanExtra(getString(R.string.txt_update_screen_flow_tag), false)
+        pokemonNameSelected =
+            intent.getStringExtra(getString(R.string.txt_pokemon_name_selected_flag)).toString()
+        pokemonTypeSelected =
+            intent.getStringExtra(getString(R.string.txt_pokemon_type_selected_flag)).toString()
 
-        if (screenFlow) {
-            toolbar.setTitle("Actualizar Pókemon")
+        if (isUpdateScreenFlow) {
+            toolbar.setTitle(getString(R.string.txt_title_update))
+            txtSubtitle.text = getString(R.string.txt_subtitle_update)
+            btnAddPokemon.text = getString(R.string.txt_btn_update)
+
+            edtxtPokemonName.setText(pokemonNameSelected.capitalizeFirstLetterOfWord())
+            dropDownPokemonType.setText(pokemonTypeSelected.capitalizeFirstLetterOfWord())
+
         }
 
         room = Data.room
@@ -127,6 +150,26 @@ class AddNewPokemonActivity : AppCompatActivity() {
             } else {
                 addNewPokemon(it, room, pokemon)
             }
+        }
+
+        btnBack.setOnClickListener {
+
+            val message = if (isUpdateScreenFlow) {
+                "¿Estás seguro que desas cancelar la actualización de los datos del Pókemon ${pokemonNameSelected.capitalizeFirstLetterOfWord()}?"
+            } else {
+                getString(R.string.txt_question_cancel_pokemon_register)
+            }
+
+            MaterialAlertDialogBuilder(this)
+                .setTitle(R.string.app_name)
+                .setMessage(message)
+                .setPositiveButton(getString(R.string.txt_alert_btn_stay)) { dialog, which ->
+                    dialog.dismiss()
+                }
+                .setNegativeButton(getString(R.string.txt_alert_btn_exit)) { dialog, which ->
+                    finish()
+                }
+                .show()
         }
     }
 

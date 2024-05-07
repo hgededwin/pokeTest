@@ -43,4 +43,13 @@
     <string name="txt_add_new_pokemon">Agregar nuevo Pókemon</string>
     <string name="txt_type">Tipo:</string>
     <string name="txt_add_pokemon">Agregar</string>
+    <string name="txt_subtitle_update">Ingresa los siguientes datos para actualizar un Pókemon</string>
+    <string name="txt_btn_update">Actualizar</string>
+    <string name="txt_update_screen_flow_tag">UPDATE_FLOW</string>
+    <string name="txt_title_update">Actualizar Pókemon</string>
+    <string name="txt_pokemon_name_selected_flag">POKEMON_NAME_SELECTED</string>
+    <string name="txt_pokemon_type_selected_flag">POKEMON_TYPE_SELECTED</string>
+    <string name="txt_question_cancel_pokemon_register">¿Estás seguro que desas cancelar el registro?</string>
+    <string name="txt_alert_btn_stay">Permanecer</string>
+    <string name="txt_alert_btn_exit">Salir</string>
 </resources>

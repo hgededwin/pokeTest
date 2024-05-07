@@ -18,4 +18,6 @@ interface DAOPokemon {
     @Query("DELETE FROM pokemon_table WHERE pokemonName = :pokemonName")
     suspend fun deletePokemonInfo(pokemonName: String)
 
+    @Query("SELECT * FROM pokemon_table WHERE pokemonName = :pokemonName")
+    suspend fun getPokemonSelected(pokemonName: String): Pokemon
 }

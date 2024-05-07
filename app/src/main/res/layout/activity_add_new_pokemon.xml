@@ -30,6 +30,7 @@
                 <ImageView
                     android:layout_width="30dp"
                     android:layout_height="30dp"
+                    android:id="@+id/btn_back"
                     android:src="@drawable/ic_arrow_back"
                     app:tint="@color/primary_color_variant" />
             </com.google.android.material.appbar.MaterialToolbar>
