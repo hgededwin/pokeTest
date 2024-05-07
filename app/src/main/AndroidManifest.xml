@@ -22,9 +22,7 @@
         android:theme="@style/Theme.PokeTest"
         android:usesCleartextTraffic="true"
         tools:targetApi="34">
-        <activity
-            android:name=".ui.pokemon.UpdatePokemonActivity"
-            android:exported="false" />
+
         <activity
             android:name=".ui.pokemon.AddNewPokemonActivity"
             android:exported="false"

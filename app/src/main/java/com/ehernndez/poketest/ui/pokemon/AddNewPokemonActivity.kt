@@ -10,6 +10,7 @@ import android.widget.AutoCompleteTextView
 import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.activity.OnBackPressedCallback
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
 import com.ehernndez.poketest.R
@@ -145,32 +146,54 @@ class AddNewPokemonActivity : AppCompatActivity() {
                     dropDownPokemonType.text.toString().lowercase()
                 )
 
-            if (pokemonList.contains(pokemon)) {
-                Snackbar.make(it, "Este pokémon ya existe", Snackbar.LENGTH_LONG).show()
+            if (isUpdateScreenFlow) {
+                // create update pokemon function
+                updatePokemon(pokemon, it)
             } else {
-                addNewPokemon(it, room, pokemon)
+              validateIfPokemonExist(pokemon, it)
             }
         }
 
         btnBack.setOnClickListener {
-
-            val message = if (isUpdateScreenFlow) {
-                "¿Estás seguro que desas cancelar la actualización de los datos del Pókemon ${pokemonNameSelected.capitalizeFirstLetterOfWord()}?"
-            } else {
-                getString(R.string.txt_question_cancel_pokemon_register)
-            }
-
-            MaterialAlertDialogBuilder(this)
-                .setTitle(R.string.app_name)
-                .setMessage(message)
-                .setPositiveButton(getString(R.string.txt_alert_btn_stay)) { dialog, which ->
-                    dialog.dismiss()
-                }
-                .setNegativeButton(getString(R.string.txt_alert_btn_exit)) { dialog, which ->
-                    finish()
-                }
-                .show()
+            actionOnBackPressed()
         }
+
+        onBackPressedDispatcher.addCallback(object : OnBackPressedCallback(true) {
+            override fun handleOnBackPressed() {
+                actionOnBackPressed()
+            }
+        })
+    }
+
+    fun validateIfPokemonExist(pokemon: Pokemon, view: View) {
+        // validate if a Pokemon exists
+        if (pokemonList.contains(pokemon)) {
+            Snackbar.make(view, getString(R.string.txt_this_pokemon_already_exist), Snackbar.LENGTH_LONG).show()
+        } else {
+            addNewPokemon(view, room, pokemon)
+        }
+    }
+
+    fun actionOnBackPressed() {
+        val message = if (isUpdateScreenFlow) {
+            getString(
+                R.string.txt_question_update_pokemon,
+                pokemonNameSelected.capitalizeFirstLetterOfWord()
+            )
+        } else {
+            getString(R.string.txt_question_cancel_pokemon_register)
+        }
+
+        MaterialAlertDialogBuilder(this)
+            .setTitle(R.string.app_name)
+            .setMessage(message)
+            .setPositiveButton(getString(R.string.txt_alert_btn_stay)) { dialog, which ->
+                dialog.dismiss()
+            }
+            .setNegativeButton(getString(R.string.txt_alert_btn_exit)) { dialog, which ->
+                finish()
+            }
+            .show()
     }
 
     fun addNewPokemon(view: View, room: PokemonDB, pokemon: Pokemon) {
@@ -189,6 +212,15 @@ class AddNewPokemonActivity : AppCompatActivity() {
         lifecycleScope.launch {
             pokemonList = room.daoPokemon().getPokemonList()
             Log.e("---> PokemonList", pokemonList.toString())
+        }
+    }
+
+    private fun updatePokemon(pokemon: Pokemon, view: View) {
+        lifecycleScope.launch {
+            room.daoPokemon().updatePokemonInfo(pokemon.pokemonName, pokemon.pokemonType)
+            Snackbar.make(view, getString(R.string.txt_pokemon_updated, pokemon.pokemonName.capitalizeFirstLetterOfWord()), Snackbar.LENGTH_LONG).show()
+            delay(2000)
+            finish()
         }
     }
 

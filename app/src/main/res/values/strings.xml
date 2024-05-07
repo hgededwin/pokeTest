@@ -52,4 +52,7 @@
     <string name="txt_question_cancel_pokemon_register">¿Estás seguro que desas cancelar el registro?</string>
     <string name="txt_alert_btn_stay">Permanecer</string>
     <string name="txt_alert_btn_exit">Salir</string>
+    <string name="txt_question_update_pokemon">¿Estás seguro que desas cancelar la actualización de los datos del Pókemon %s?</string>
+    <string name="txt_this_pokemon_already_exist">Este pokémon ya existe</string>
+    <string name="txt_pokemon_updated">Los datos de %s han sido actualizados exitosamente.</string>
 </resources>
