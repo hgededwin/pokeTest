@@ -44,6 +44,7 @@ dependencies {
     implementation(libs.androidx.room.ktx)
     annotationProcessor(libs.room.compiler)
     kapt("androidx.room:room-compiler:2.6.1")
+
     implementation(libs.retrofit)
     implementation(libs.retrofit2.converter.gson)
 
