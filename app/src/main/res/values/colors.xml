@@ -18,5 +18,10 @@
     <color name="primary_color_variant">#035718</color>
     <color name="primary_container_color_variant">#D9DDCA</color>
     <color name="secondary_color_variant">#444F3E</color>
+
+
+    <color name="primary_color_third_variant">#455A64</color>
+    <color name="secondary_color_third_variant">#90A4AE</color>
+    <color name="primary_container_color_third_variant">#ECEFF1</color>
     
 </resources>

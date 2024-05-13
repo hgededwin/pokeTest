@@ -18,6 +18,13 @@
         <item name="android:colorBackground">@color/white_color</item>
     </style>
 
+    <style name="Base.Theme.PokeTest.Variant.Detail" parent="Theme.Material3.DayNight.NoActionBar">
+        <item name="colorPrimary">@color/primary_color_third_variant</item>
+        <item name="colorPrimaryContainer">@color/primary_container_color_third_variant</item>
+        <item name="colorSecondary">@color/secondary_color_third_variant</item>
+        <item name="android:colorBackground">@color/white_color</item>
+    </style>
+
     <style name="Theme.PokeTest.Toolbar.Title" parent="TextAppearance.Material3.ActionBar.Title">
         <item name="android:textSize">20sp</item>
     </style>
