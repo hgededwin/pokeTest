@@ -55,4 +55,6 @@
     <string name="txt_question_update_pokemon">¿Estás seguro que desas cancelar la actualización de los datos del Pókemon %s?</string>
     <string name="txt_this_pokemon_already_exist">Este pokémon ya existe</string>
     <string name="txt_pokemon_updated">Los datos de %s han sido actualizados exitosamente.</string>
+    <string name="txt_pokemon_type">Tipo:</string>
+    <string name="txt_pokemon_info">Información:</string>
 </resources>
