@@ -45,6 +45,7 @@ dependencies {
     annotationProcessor(libs.room.compiler)
     kapt("androidx.room:room-compiler:2.6.1")
 
+    implementation(libs.play.services.maps)
     implementation(libs.retrofit)
     implementation(libs.retrofit2.converter.gson)
     implementation (libs.picasso)
