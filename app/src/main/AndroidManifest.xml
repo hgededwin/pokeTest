@@ -23,10 +23,18 @@
         android:usesCleartextTraffic="true"
         tools:targetApi="34">
         <activity
-            android:name=".ui.home.PokemonDetailActivity"
-            android:screenOrientation="portrait"
-            android:theme="@style/Base.Theme.PokeTest.Variant.Detail"
+            android:name=".ui.home.MapsPokemonActivity"
             android:exported="false" />
+
+        <meta-data
+            android:name="com.google.android.geo.API_KEY"
+            android:value="@string/google_maps_api_key" />
+
+        <activity
+            android:name=".ui.home.PokemonDetailActivity"
+            android:exported="false"
+            android:screenOrientation="portrait"
+            android:theme="@style/Base.Theme.PokeTest.Variant.Detail" />
         <activity
             android:name=".ui.pokemon.AddNewPokemonActivity"
             android:exported="false"
