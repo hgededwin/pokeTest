@@ -45,6 +45,7 @@ dependencies {
     annotationProcessor(libs.room.compiler)
     kapt("androidx.room:room-compiler:2.6.1")
 
+    implementation(libs.androidx.biometric.ktx)
     implementation(libs.play.services.location)
     implementation(libs.play.services.maps)
     implementation(libs.retrofit)

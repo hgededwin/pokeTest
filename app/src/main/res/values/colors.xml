@@ -23,5 +23,6 @@
     <color name="primary_color_third_variant">#455A64</color>
     <color name="secondary_color_third_variant">#90A4AE</color>
     <color name="primary_container_color_third_variant">#ECEFF1</color>
-    
+
+    <color name="selector_gray_color">#EEEEEE</color>
 </resources>

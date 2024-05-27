@@ -21,7 +21,7 @@ class SplashActivity : AppCompatActivity() {
         setContentView(R.layout.activity_splash)
 
         hideSplash()
-        Data.shared.isRegistered = true
+       // Data.shared.isRegistered = false
 
        // deleteDatabase("pokeTest_database")
     }
@@ -31,16 +31,7 @@ class SplashActivity : AppCompatActivity() {
         timer = object : CountDownTimer(5000, 1) {
             override fun onTick(millisUntilFinished: Long) {
                 // this function count the seconds, here we config the format that we want to show to the final user: "%02d:%02ds"
-                val seconds = String.format(
-                    "%02d:%02ds",
-                    TimeUnit.MILLISECONDS.toMinutes(millisUntilFinished),
-                    TimeUnit.MILLISECONDS.toSeconds(millisUntilFinished) -
-                            TimeUnit.MINUTES.toSeconds(
-                                TimeUnit.MILLISECONDS.toMinutes(
-                                    millisUntilFinished
-                                )
-                            )
-                )
+
             }
 
             override fun onFinish() {
