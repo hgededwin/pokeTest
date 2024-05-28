@@ -23,6 +23,7 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
             requireActivity().finish()
         } */
 
+
         Log.e("[FIRST FRAGMENT --->", "method onViewCreated was called")
     }
 
