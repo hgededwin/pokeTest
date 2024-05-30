@@ -1,18 +1,15 @@
 package com.ehernndez.poketest.ui
 
-import android.content.Intent
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
 import android.view.View
 import android.widget.Button
 import android.widget.TextView
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.ehernndez.poketest.R
 import com.ehernndez.poketest.data.persistantData.Data
 import com.ehernndez.poketest.ui.home.HomeActivity
-import com.ehernndez.poketest.utils.NetworkConnection
 import com.ehernndez.poketest.utils.Utils
 import com.google.android.material.button.MaterialButton
 import com.google.android.material.card.MaterialCardView
