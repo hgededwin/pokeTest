@@ -8,6 +8,7 @@ import android.net.Uri
 import android.os.Bundle
 import android.provider.MediaStore
 import android.util.Log
+import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
@@ -37,6 +38,7 @@ class SettingsActivity : AppCompatActivity() {
     lateinit var executor: Executor
     lateinit var biometricPrompt: BiometricPrompt
     lateinit var biometricPromptInfo: BiometricPrompt.PromptInfo
+    lateinit var btnSendInfo: Button
 
     private var cameraResultActivity: ActivityResultLauncher<Intent> =
         registerForActivityResult(ActivityResultContracts.StartActivityForResult()) {
@@ -55,6 +57,7 @@ class SettingsActivity : AppCompatActivity() {
         txtBirthday = findViewById(R.id.txt_birthday)
         txtEmail = findViewById(R.id.txt_email)
         switchBiometric = findViewById(R.id.switch_biometric)
+        btnSendInfo = findViewById(R.id.btn_send_info)
 
         val userName = Data.shared.userName + " " + Data.shared.lastName
         txtUsername.text = userName
@@ -102,6 +105,16 @@ class SettingsActivity : AppCompatActivity() {
                 Data.shared.useBiometric = false
             }
         }
+
+        btnSendInfo.setOnClickListener {
+            intentPokemon()
+        }
+    }
+
+    fun intentPokemon() {
+        val intent = Intent("com.ehernndez.poketest.POKEMON_RECIEVER")
+        intent.putExtra("POKEMON_RECIEVER", "Pikachu")
+        sendBroadcast(intent)
     }
 
     fun hasBiometricCapability(context: Context): Int {
@@ -109,7 +122,8 @@ class SettingsActivity : AppCompatActivity() {
             .canAuthenticate(BiometricManager.Authenticators.BIOMETRIC_STRONG or BiometricManager.Authenticators.DEVICE_CREDENTIAL)
     }
 
-    fun isBiometricReady(context: Context) = hasBiometricCapability(context) == BiometricManager.BIOMETRIC_SUCCESS
+    fun isBiometricReady(context: Context) =
+        hasBiometricCapability(context) == BiometricManager.BIOMETRIC_SUCCESS
 
     fun makeBiometricPrompt() {
         executor = ContextCompat.getMainExecutor(this)

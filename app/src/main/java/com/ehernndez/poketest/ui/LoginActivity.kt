@@ -6,10 +6,12 @@ import android.text.TextWatcher
 import android.view.View
 import android.widget.Button
 import android.widget.TextView
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.ehernndez.poketest.R
 import com.ehernndez.poketest.data.persistantData.Data
 import com.ehernndez.poketest.ui.home.HomeActivity
+import com.ehernndez.poketest.utils.NetworkConnection
 import com.ehernndez.poketest.utils.Utils
 import com.google.android.material.button.MaterialButton
 import com.google.android.material.card.MaterialCardView
@@ -48,6 +50,7 @@ class LoginActivity : AppCompatActivity() {
         }
 
 
+
         edtxtPassword.addTextChangedListener(object : TextWatcher {
             override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
             }
@@ -70,10 +73,8 @@ class LoginActivity : AppCompatActivity() {
         })
 
         btnLoginWithBiometric.setOnClickListener {
-            /*Utils().createIntent(this@LoginActivity, HomeActivity())
-            finish()*/
-
-
+            Utils().createIntent(this@LoginActivity, HomeActivity())
+            finish()
         }
 
         btnLogin.setOnClickListener {
