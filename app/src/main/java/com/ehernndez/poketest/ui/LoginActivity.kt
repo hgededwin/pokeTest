@@ -1,15 +1,21 @@
 package com.ehernndez.poketest.ui
 
+import android.content.Intent
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
+import android.view.View
 import android.widget.Button
 import android.widget.TextView
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.ehernndez.poketest.R
 import com.ehernndez.poketest.data.persistantData.Data
 import com.ehernndez.poketest.ui.home.HomeActivity
+import com.ehernndez.poketest.utils.NetworkConnection
 import com.ehernndez.poketest.utils.Utils
+import com.google.android.material.button.MaterialButton
+import com.google.android.material.card.MaterialCardView
 import com.google.android.material.textfield.TextInputEditText
 import com.google.android.material.textfield.TextInputLayout
 
@@ -18,6 +24,9 @@ class LoginActivity : AppCompatActivity() {
     lateinit var edtxtPassword: TextInputEditText
     lateinit var txtEmailuser: TextView
     lateinit var btnLogin: Button
+    lateinit var cardLoginWithPassword: MaterialCardView
+    lateinit var cardLoginWithBiometric: MaterialCardView
+    lateinit var btnLoginWithBiometric: MaterialButton
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
@@ -26,8 +35,21 @@ class LoginActivity : AppCompatActivity() {
         edtxtPassword = findViewById(R.id.edtxt_login)
         txtEmailuser = findViewById(R.id.txt_email_user)
         btnLogin = findViewById(R.id.btn_login)
+        cardLoginWithPassword = findViewById(R.id.card_view_login)
+        cardLoginWithBiometric = findViewById(R.id.card_view_login_with_biometric)
+        btnLoginWithBiometric = findViewById(R.id.btn_login_with_biometric)
 
-        txtEmailuser.text = Data.shared.email
+        if (Data.shared.useBiometric) {
+            btnLogin.visibility = View.GONE
+            cardLoginWithPassword.visibility = View.GONE
+
+        } else {
+            btnLogin.visibility = View.VISIBLE
+            cardLoginWithBiometric.visibility = View.GONE
+
+            txtEmailuser.text = Data.shared.email
+        }
+
 
         edtxtPassword.addTextChangedListener(object : TextWatcher {
             override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
@@ -50,7 +72,15 @@ class LoginActivity : AppCompatActivity() {
             }
         })
 
+        btnLoginWithBiometric.setOnClickListener {
+            /*Utils().createIntent(this@LoginActivity, HomeActivity())
+            finish()*/
+
+
+        }
+
         btnLogin.setOnClickListener {
+            Data.shared.psw = edtxtPassword.text.toString()
             Utils().createIntent(this@LoginActivity, HomeActivity())
             finish()
         }

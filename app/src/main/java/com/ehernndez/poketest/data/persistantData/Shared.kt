@@ -10,12 +10,22 @@ class Shared(context: Context) {
     private val lastNameKey = "last_name_key"
     private val bornDateKey = "born_date_key"
     private val emailKey = "email_key"
+    private val pswKey = "psw_key"
+    private val useBiometricKey = "use_biometric_key"
 
     private val prefs: SharedPreferences = context.getSharedPreferences(prefsName, 0)
+
+    var useBiometric: Boolean
+        get() = prefs.getBoolean(useBiometricKey, false)
+        set(value) = prefs.edit().putBoolean(useBiometricKey, value).apply()
 
     var isRegistered: Boolean
         get() = prefs.getBoolean(isRegistedKey, false)
         set(value) = prefs.edit().putBoolean(isRegistedKey, value).apply()
+
+    var psw: String
+        get() = prefs.getString(pswKey, "").toString()
+        set(value) = prefs.edit().putString(pswKey, value).apply()
 
     var userName: String
         get() = prefs.getString(userNameKey, "").toString()
