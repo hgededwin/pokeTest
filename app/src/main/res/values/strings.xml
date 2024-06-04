@@ -62,4 +62,8 @@
     <string name="txt_close_drawer">Cerrado</string>
 
     <string name="google_maps_api_key">AIzaSyCMrpf5Ilf_kwOOUy3LfG_aMPgf-zRXhWI</string>
+    <string name="txt_notifications">Notificaciones</string>
+    <string name="txt_share_app">Compartir App</string>
+    <string name="txt_about">Acerca de ...</string>
+    <string name="txt_logout">Cerrar sesión</string>
 </resources>
