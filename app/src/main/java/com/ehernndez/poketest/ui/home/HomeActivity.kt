@@ -6,6 +6,7 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.view.GravityCompat
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.fragment.app.Fragment
 import com.ehernndez.poketest.R
@@ -15,6 +16,7 @@ import com.ehernndez.poketest.ui.home.fragments.PokedexFragment
 import com.ehernndez.poketest.ui.home.fragments.PokemonFragment
 import com.google.android.material.appbar.MaterialToolbar
 import com.google.android.material.bottomnavigation.BottomNavigationView
+import com.google.android.material.materialswitch.MaterialSwitch
 import com.google.android.material.navigation.NavigationView
 
 class HomeActivity : AppCompatActivity() {
@@ -44,23 +46,31 @@ class HomeActivity : AppCompatActivity() {
     }
 
     private fun createDrawerMenu() {
-        actionDrawerToggle = ActionBarDrawerToggle(this, drawerLayout, R.string.txt_open_drawer, R.string.txt_close_drawer)
+        actionDrawerToggle = ActionBarDrawerToggle(
+            this,
+            drawerLayout,
+            R.string.txt_open_drawer,
+            R.string.txt_close_drawer
+        )
         drawerLayout.addDrawerListener(actionDrawerToggle)
         actionDrawerToggle.syncState()
 
         drawerNavigation.setNavigationItemSelectedListener { item ->
             when (item.itemId) {
                 R.id.item_notifications -> {
+                    drawerLayout.closeDrawer(GravityCompat.START)
                     Toast.makeText(this, "Notifications", Toast.LENGTH_SHORT).show()
                     true
                 }
 
                 R.id.item_share -> {
+                    drawerLayout.closeDrawer(GravityCompat.START)
                     Toast.makeText(this, "Share", Toast.LENGTH_SHORT).show()
                     true
                 }
 
                 R.id.item_info -> {
+                    drawerLayout.closeDrawer(GravityCompat.START)
                     Toast.makeText(this, "Info", Toast.LENGTH_SHORT).show()
                     true
                 }
@@ -69,6 +79,11 @@ class HomeActivity : AppCompatActivity() {
             }
         }
 
+        customHeader()
+
+    }
+
+    private fun customHeader() {
         val headerView = drawerNavigation.getHeaderView(0)
         val txtUserName = headerView.findViewById<TextView>(R.id.txt_username)
         val username = Data.shared.userName + " " + Data.shared.lastName
@@ -80,7 +95,17 @@ class HomeActivity : AppCompatActivity() {
         val txtEmail = headerView.findViewById<TextView>(R.id.txt_email)
         txtEmail.text = Data.shared.email
 
+        val swBiometric = headerView.findViewById<MaterialSwitch>(R.id.switch_biometric)
 
+        swBiometric.setOnCheckedChangeListener { buttonView, isChecked ->
+            if (isChecked) {
+                swBiometric.trackTintList = getColorStateList(R.color.primary_color)
+                swBiometric.thumbTintList = getColorStateList(R.color.white_color)
+            } else {
+                swBiometric.trackTintList = getColorStateList(R.color.primary_container_color)
+                swBiometric.thumbTintList = getColorStateList(R.color.gray_text_color)
+            }
+        }
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {

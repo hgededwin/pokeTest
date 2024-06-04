@@ -10,18 +10,18 @@
         <menu>
             <item
                 android:id="@+id/item_notifications"
-                android:enabled="true"
                 android:icon="@drawable/ic_notifications"
+                android:checkable="true"
                 android:title="@string/txt_notifications" />
             <item
                 android:id="@+id/item_share"
-                android:enabled="true"
                 android:icon="@drawable/ic_share"
+                android:checkable="true"
                 android:title="@string/txt_share_app" />
             <item
                 android:id="@+id/item_info"
-                android:enabled="true"
                 android:icon="@drawable/ic_info"
+                android:checkable="true"
                 android:title="@string/txt_about" />
         </menu>
     </item>
@@ -33,19 +33,16 @@
 
             <item
                 android:id="@+id/item_facebook"
-                android:enabled="true"
                 android:icon="@drawable/ic_user"
                 android:title="Facebook" />
 
             <item
                 android:id="@+id/item_twitter"
-                android:enabled="true"
                 android:icon="@drawable/ic_birthday"
                 android:title="Twitter" />
 
             <item
                 android:id="@+id/item_instagram"
-                android:enabled="true"
                 android:icon="@drawable/ic_rotate_sprite"
                 android:title="Instagram" />
         </menu>

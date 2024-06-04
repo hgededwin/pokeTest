@@ -6,8 +6,8 @@
 
     <ImageView
         android:id="@+id/img_user"
-        android:layout_width="70dp"
-        android:layout_height="70dp"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
         android:layout_marginTop="25dp"
         android:src="@drawable/ic_user"
         app:layout_constraintEnd_toEndOf="parent"
@@ -29,17 +29,19 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/container_birthday"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
+        android:layout_marginStart="25dp"
+        android:layout_marginEnd="25dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/txt_username">
 
         <ImageView
             android:id="@+id/img_birthday"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
             android:src="@drawable/ic_birthday"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -52,17 +54,19 @@
             android:layout_marginStart="16dp"
             android:textColor="@color/black_color"
             android:textSize="18sp"
+            android:text="asdcasdcas"
             android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@id/img_birthday"
             app:layout_constraintTop_toTopOf="parent" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/container_email"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginStart="25dp"
+        android:layout_marginEnd="25dp"
         android:layout_marginTop="8dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -70,8 +74,8 @@
 
         <ImageView
             android:id="@+id/img_email"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
             android:src="@drawable/ic_email"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -84,8 +88,8 @@
             android:layout_marginStart="16dp"
             android:textColor="@color/black_color"
             android:textSize="18sp"
+            android:text="asdcassa"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@id/img_email"
             app:layout_constraintTop_toTopOf="parent" />
     </androidx.constraintlayout.widget.ConstraintLayout>
@@ -100,10 +104,10 @@
         android:text="Acceder a la aplicación con biométrico"
         android:textColor="@color/black_color"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/container_email"
+        app:trackTint="@color/primary_container_color"
         app:thumbTint="@color/gray_text_color"
-        app:trackTint="@color/primary_container_color" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/container_email" />
 
 
     <com.google.android.material.divider.MaterialDivider
