@@ -58,6 +58,8 @@
     <string name="txt_pokemon_type">Tipo:</string>
     <string name="txt_pokemon_info">Información:</string>
     <string name="txt_login_with_biometric">Iniciar sesión con huella digital</string>
+    <string name="txt_open_drawer">Abierto</string>
+    <string name="txt_close_drawer">Cerrado</string>
 
     <string name="google_maps_api_key">AIzaSyCMrpf5Ilf_kwOOUy3LfG_aMPgf-zRXhWI</string>
 </resources>
