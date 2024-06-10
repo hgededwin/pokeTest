@@ -35,9 +35,6 @@ class SettingsActivity : AppCompatActivity() {
     lateinit var txtBirthday: TextView
     lateinit var txtEmail: TextView
     lateinit var switchBiometric: MaterialSwitch
-    lateinit var executor: Executor
-    lateinit var biometricPrompt: BiometricPrompt
-    lateinit var biometricPromptInfo: BiometricPrompt.PromptInfo
     lateinit var btnSendInfo: Button
 
     private var cameraResultActivity: ActivityResultLauncher<Intent> =
@@ -83,8 +80,6 @@ class SettingsActivity : AppCompatActivity() {
             }
         }
 
-        makeBiometricPrompt()
-
         if (Data.shared.useBiometric) {
             switchBiometric.isChecked = true
         }
@@ -92,7 +87,7 @@ class SettingsActivity : AppCompatActivity() {
         switchBiometric.setOnCheckedChangeListener { _, isChecked ->
             if (isChecked) {
 
-                if (isBiometricReady(this)) {
+               /* if (isBiometricReady(this)) {
                     biometricPrompt.authenticate(biometricPromptInfo)
                 } else {
                     Toast.makeText(
@@ -100,7 +95,7 @@ class SettingsActivity : AppCompatActivity() {
                         "No tienes habilitada la autenticación por huella digital",
                         Toast.LENGTH_SHORT
                     ).show()
-                }
+                } */
             } else {
                 Data.shared.useBiometric = false
             }
@@ -117,65 +112,8 @@ class SettingsActivity : AppCompatActivity() {
         sendBroadcast(intent)
     }
 
-    fun hasBiometricCapability(context: Context): Int {
-        return BiometricManager.from(context)
-            .canAuthenticate(BiometricManager.Authenticators.BIOMETRIC_STRONG or BiometricManager.Authenticators.DEVICE_CREDENTIAL)
-    }
 
-    fun isBiometricReady(context: Context) =
-        hasBiometricCapability(context) == BiometricManager.BIOMETRIC_SUCCESS
 
-    fun makeBiometricPrompt() {
-        executor = ContextCompat.getMainExecutor(this)
-
-        biometricPrompt =
-            BiometricPrompt(this, executor, object : BiometricPrompt.AuthenticationCallback() {
-                override fun onAuthenticationError(errorCode: Int, errString: CharSequence) {
-                    super.onAuthenticationError(errorCode, errString)
-                    if (errorCode == BiometricPrompt.ERROR_NEGATIVE_BUTTON) {
-                        Toast.makeText(
-                            applicationContext,
-                            "No podrás iniciar sesión con tu huella digital",
-                            Toast.LENGTH_SHORT
-                        ).show()
-                        Data.shared.useBiometric = false
-                        switchBiometric.isChecked = false
-                    }
-
-                    Log.d("BIOMETRIC --->", "$errorCode :: $errString")
-                }
-
-                override fun onAuthenticationSucceeded(result: BiometricPrompt.AuthenticationResult) {
-                    super.onAuthenticationSucceeded(result)
-
-                    Data.shared.useBiometric = true
-                    Toast.makeText(
-                        applicationContext,
-                        "Inicio de sesión exitoso",
-                        Toast.LENGTH_SHORT
-                    ).show()
-                }
-
-                override fun onAuthenticationFailed() {
-                    super.onAuthenticationFailed()
-                    Data.shared.useBiometric = false
-                    switchBiometric.isChecked = false
-                    Toast.makeText(
-                        applicationContext,
-                        "Inicio de sesión fallido",
-                        Toast.LENGTH_SHORT
-                    ).show()
-                }
-            })
-
-        biometricPromptInfo = BiometricPrompt.PromptInfo.Builder()
-            .setTitle("PokeTest")
-            .setSubtitle("Autenticación por huella digital")
-            .setDescription("Para acceder a tu cuenta, debe autenticarse con tu huella digital")
-            .setNegativeButtonText("Cancelar")
-            .setConfirmationRequired(false)
-            .build()
-    }
 
     private fun openCamera() {
         val values = ContentValues()

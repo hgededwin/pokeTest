@@ -1,11 +1,20 @@
 package com.ehernndez.poketest.ui.home
 
+import android.content.Context
+import android.content.Intent
+import android.graphics.Bitmap
+import android.graphics.BitmapFactory
 import android.os.Bundle
+import android.provider.MediaStore
+import android.util.Log
 import android.view.MenuItem
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.app.AppCompatActivity
+import androidx.biometric.BiometricManager
+import androidx.biometric.BiometricPrompt
+import androidx.core.content.ContextCompat
 import androidx.core.view.GravityCompat
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.fragment.app.Fragment
@@ -18,6 +27,8 @@ import com.google.android.material.appbar.MaterialToolbar
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.android.material.materialswitch.MaterialSwitch
 import com.google.android.material.navigation.NavigationView
+import java.io.File
+import java.util.concurrent.Executor
 
 class HomeActivity : AppCompatActivity() {
     lateinit var navigationView: BottomNavigationView
@@ -26,6 +37,14 @@ class HomeActivity : AppCompatActivity() {
     lateinit var actionDrawerToggle: ActionBarDrawerToggle
     lateinit var drawerLayout: DrawerLayout
     lateinit var drawerNavigation: NavigationView
+
+    lateinit var executor: Executor
+    lateinit var biometricPrompt: BiometricPrompt
+    lateinit var biometricPromptInfo: BiometricPrompt.PromptInfo
+
+    var isBiometricEnabled = false
+
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_home)
@@ -43,6 +62,8 @@ class HomeActivity : AppCompatActivity() {
 
         createBottomNavigationMenu()
         createDrawerMenu()
+
+        makeBiometricPrompt()
     }
 
     private fun createDrawerMenu() {
@@ -101,6 +122,19 @@ class HomeActivity : AppCompatActivity() {
             if (isChecked) {
                 swBiometric.trackTintList = getColorStateList(R.color.primary_color)
                 swBiometric.thumbTintList = getColorStateList(R.color.white_color)
+
+                if (isBiometricReady(this)) {
+                    biometricPrompt.authenticate(biometricPromptInfo)
+                } else {
+                    Toast.makeText(
+                        this,
+                        "No tienes habilitada la autenticación por huella digital",
+                        Toast.LENGTH_SHORT
+                    ).show()
+                    swBiometric.isChecked = false
+                    Data.shared.useBiometric = false
+                }
+
             } else {
                 swBiometric.trackTintList = getColorStateList(R.color.primary_container_color)
                 swBiometric.thumbTintList = getColorStateList(R.color.gray_text_color)
@@ -143,17 +177,63 @@ class HomeActivity : AppCompatActivity() {
             replace(R.id.fragment_container, fragment).commit()
         }
     }
+
+    fun makeBiometricPrompt() {
+        executor = ContextCompat.getMainExecutor(this)
+
+        biometricPrompt =
+            BiometricPrompt(this, executor, object : BiometricPrompt.AuthenticationCallback() {
+                override fun onAuthenticationError(errorCode: Int, errString: CharSequence) {
+                    super.onAuthenticationError(errorCode, errString)
+                    if (errorCode == BiometricPrompt.ERROR_NEGATIVE_BUTTON) {
+                        Toast.makeText(
+                            this@HomeActivity,
+                            "No podrás iniciar sesión con tu huella digital",
+                            Toast.LENGTH_SHORT
+                        ).show()
+                        Data.shared.useBiometric = false
+                    }
+
+                    Log.d("BIOMETRIC --->", "$errorCode :: $errString")
+                }
+
+                override fun onAuthenticationSucceeded(result: BiometricPrompt.AuthenticationResult) {
+                    super.onAuthenticationSucceeded(result)
+
+                    Data.shared.useBiometric = true
+                    Toast.makeText(
+                        this@HomeActivity,
+                        "Inicio de sesión exitoso",
+                        Toast.LENGTH_SHORT
+                    ).show()
+                }
+
+                override fun onAuthenticationFailed() {
+                    super.onAuthenticationFailed()
+                    Data.shared.useBiometric = false
+                    Toast.makeText(
+                        this@HomeActivity,
+                        "Inicio de sesión fallido",
+                        Toast.LENGTH_SHORT
+                    ).show()
+                }
+            })
+
+        biometricPromptInfo = BiometricPrompt.PromptInfo.Builder()
+            .setTitle("PokeTest")
+            .setSubtitle("Autenticación por huella digital")
+            .setDescription("Para acceder a tu cuenta, debe autenticarse con tu huella digital")
+            .setNegativeButtonText("Cancelar")
+            .setConfirmationRequired(false)
+            .build()
+    }
+
+    fun hasBiometricCapability(context: Context): Int {
+        return BiometricManager.from(context)
+            .canAuthenticate(BiometricManager.Authenticators.BIOMETRIC_STRONG or BiometricManager.Authenticators.DEVICE_CREDENTIAL)
+    }
+
+    fun isBiometricReady(context: Context) =
+        hasBiometricCapability(context) == BiometricManager.BIOMETRIC_SUCCESS
+
 }
-
-
-// this code is used to open SettingsActivity
-/* toolbar.setOnMenuItemClickListener { menuItem ->
-     when (menuItem.itemId) {
-         R.id.item_settings -> {
-             Utils().createIntent(this@HomeActivity, SettingsActivity())
-             true
-         }
-
-         else -> false
-     }
- } */
