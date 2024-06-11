@@ -4,6 +4,8 @@ plugins {
     alias(libs.plugins.androidApplication)
     alias(libs.plugins.jetbrainsKotlinAndroid)
     id("kotlin-kapt")
+
+    id("com.google.gms.google-services")
 }
 
 
@@ -45,8 +47,10 @@ dependencies {
     annotationProcessor(libs.room.compiler)
     kapt("androidx.room:room-compiler:2.6.1")
 
-    implementation(libs.circleimageview)
 
+    implementation(platform(libs.firebase.bom))
+    implementation(libs.firebase.analytics)
+    implementation(libs.circleimageview)
     implementation(libs.androidx.biometric.ktx)
     implementation(libs.play.services.location)
     implementation(libs.play.services.maps)

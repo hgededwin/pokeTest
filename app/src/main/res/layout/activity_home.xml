@@ -60,7 +60,11 @@
         android:id="@+id/drawer_navigation_view"
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
+        android:background="@color/white_color"
         android:layout_gravity="start"
+        app:itemIconTint="@color/black_color"
+        app:itemTextColor="@color/black_color"
+        app:subheaderColor="@color/black_color"
         android:fitsSystemWindows="true"
         app:headerLayout="@layout/navigation_header"
         app:menu="@menu/drawer_menu">

@@ -4,17 +4,21 @@ import android.content.Context
 import android.content.Intent
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
+import android.net.Uri
 import android.os.Bundle
 import android.provider.MediaStore
+import android.util.Base64
 import android.util.Log
 import android.view.MenuItem
 import android.widget.TextView
 import android.widget.Toast
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.biometric.BiometricManager
 import androidx.biometric.BiometricPrompt
 import androidx.core.content.ContextCompat
+import androidx.core.graphics.drawable.toBitmap
 import androidx.core.view.GravityCompat
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.fragment.app.Fragment
@@ -27,6 +31,8 @@ import com.google.android.material.appbar.MaterialToolbar
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.android.material.materialswitch.MaterialSwitch
 import com.google.android.material.navigation.NavigationView
+import de.hdodenhof.circleimageview.CircleImageView
+import java.io.ByteArrayOutputStream
 import java.io.File
 import java.util.concurrent.Executor
 
@@ -41,9 +47,6 @@ class HomeActivity : AppCompatActivity() {
     lateinit var executor: Executor
     lateinit var biometricPrompt: BiometricPrompt
     lateinit var biometricPromptInfo: BiometricPrompt.PromptInfo
-
-    var isBiometricEnabled = false
-
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -87,6 +90,34 @@ class HomeActivity : AppCompatActivity() {
                 R.id.item_share -> {
                     drawerLayout.closeDrawer(GravityCompat.START)
                     Toast.makeText(this, "Share", Toast.LENGTH_SHORT).show()
+
+                    if (Data.shared.imageUser != "") {
+                        val imageBytes = Base64.decode(Data.shared.imageUser, 0)
+                        val image = BitmapFactory.decodeByteArray(imageBytes, 0, imageBytes.size)
+
+                        val path = MediaStore.Images.Media.insertImage(
+                            contentResolver,
+                            image,
+                            "PokeTest",
+                            "ImageFromUserProfile"
+                        )
+                        val uri = Uri.parse(path)
+
+                        val sharedIntent = Intent(Intent.ACTION_SEND)
+                        sharedIntent.type = "image/*"
+                        sharedIntent.putExtra(Intent.EXTRA_STREAM, uri)
+                        sharedIntent.putExtra(
+                            Intent.EXTRA_TEXT,
+                            "Hola, te comparto mi foto de perfil. Espero que puedas utilizar la app PokeTest"
+                        )
+                        startActivity(Intent.createChooser(sharedIntent, "Compartir imagen"))
+                    } else {
+                        Toast.makeText(
+                            this,
+                            "No tienes una imagen de perfil",
+                            Toast.LENGTH_SHORT
+                        ).show()
+                    }
                     true
                 }
 
@@ -116,14 +147,35 @@ class HomeActivity : AppCompatActivity() {
         val txtEmail = headerView.findViewById<TextView>(R.id.txt_email)
         txtEmail.text = Data.shared.email
 
+        val imgUser =
+            headerView.findViewById<CircleImageView>(R.id.img_user)
+
+        val imageContract = registerForActivityResult(ActivityResultContracts.GetContent()) {
+            imgUser.setImageURI(it)
+            getImageFromImageview(imgUser)
+        }
+
+        imgUser.setOnClickListener {
+            imageContract.launch("image/*")
+        }
+
+        val userImage = Data.shared.imageUser
+
+        if (userImage != "") {
+            val imageBytes = Base64.decode(userImage, 0)
+            val image = BitmapFactory.decodeByteArray(imageBytes, 0, imageBytes.size)
+            imgUser.setImageBitmap(image)
+        }
+
         val swBiometric = headerView.findViewById<MaterialSwitch>(R.id.switch_biometric)
+
+        swBiometric.isChecked = Data.shared.useBiometric
 
         swBiometric.setOnCheckedChangeListener { buttonView, isChecked ->
             if (isChecked) {
-                swBiometric.trackTintList = getColorStateList(R.color.primary_color)
-                swBiometric.thumbTintList = getColorStateList(R.color.white_color)
-
                 if (isBiometricReady(this)) {
+                    swBiometric.trackTintList = getColorStateList(R.color.primary_color)
+                    swBiometric.thumbTintList = getColorStateList(R.color.white_color)
                     biometricPrompt.authenticate(biometricPromptInfo)
                 } else {
                     Toast.makeText(
@@ -131,6 +183,7 @@ class HomeActivity : AppCompatActivity() {
                         "No tienes habilitada la autenticación por huella digital",
                         Toast.LENGTH_SHORT
                     ).show()
+
                     swBiometric.isChecked = false
                     Data.shared.useBiometric = false
                 }
@@ -140,6 +193,21 @@ class HomeActivity : AppCompatActivity() {
                 swBiometric.thumbTintList = getColorStateList(R.color.gray_text_color)
             }
         }
+    }
+
+    private fun getImageFromImageview(imageView: CircleImageView) {
+        val bitmap = imageView.drawable.toBitmap()
+        val imageString = bitmapToString(bitmap)
+        Data.shared.imageUser = imageString
+
+        Log.d("IMAGE IN B64 --->", imageString)
+    }
+
+    private fun bitmapToString(bitmap: Bitmap): String {
+        val baos = ByteArrayOutputStream()
+        bitmap.compress(Bitmap.CompressFormat.PNG, 90, baos)
+        val btoArray = baos.toByteArray()
+        return android.util.Base64.encodeToString(btoArray, android.util.Base64.DEFAULT)
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
