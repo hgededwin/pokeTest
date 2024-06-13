@@ -50,6 +50,8 @@ dependencies {
 
     implementation(platform(libs.firebase.bom))
     implementation(libs.firebase.analytics)
+    implementation(libs.firebase.auth)
+    implementation(libs.firebase.crashlytics)
     implementation(libs.circleimageview)
     implementation(libs.androidx.biometric.ktx)
     implementation(libs.play.services.location)
