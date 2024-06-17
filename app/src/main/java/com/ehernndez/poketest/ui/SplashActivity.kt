@@ -9,6 +9,7 @@ import com.ehernndez.poketest.R
 import com.ehernndez.poketest.data.persistantData.Data
 import com.ehernndez.poketest.ui.register.OnBoardingActivity
 import com.ehernndez.poketest.utils.Utils
+import com.google.firebase.ktx.Firebase
 import java.util.concurrent.TimeUnit
 
 @SuppressLint("CustomSplashScreen")
@@ -21,12 +22,12 @@ class SplashActivity : AppCompatActivity() {
         setContentView(R.layout.activity_splash)
 
         hideSplash()
-       // Data.shared.isRegistered = false
+        // Data.shared.isRegistered = false
+        // deleteDatabase("pokeTest_database")
 
-       // deleteDatabase("pokeTest_database")
     }
 
-   private fun hideSplash() {
+    private fun hideSplash() {
         // creating a CountdownTimer and adding 30000 millis, that is equals to 30 segs.
         timer = object : CountDownTimer(5000, 1) {
             override fun onTick(millisUntilFinished: Long) {

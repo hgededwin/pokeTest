@@ -3,14 +3,18 @@ package com.ehernndez.poketest.ui.register
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
+import android.util.Log
 import android.widget.Button
 import android.widget.ImageView
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.ehernndez.poketest.R
 import com.ehernndez.poketest.data.persistantData.Data
 import com.ehernndez.poketest.utils.Utils
 import com.google.android.material.textfield.TextInputEditText
 import com.google.android.material.textfield.TextInputLayout
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.userProfileChangeRequest
 import java.util.Locale
 import java.util.regex.Matcher
 import java.util.regex.Pattern
@@ -98,12 +102,48 @@ class CreatePasswordActivity : AppCompatActivity() {
         })
 
         btnNext.setOnClickListener {
-            Data.shared.isRegistered = true
-            Utils().createIntent(
-                this@CreatePasswordActivity,
-                SuccessRegisterActivity()
-            )
+            FirebaseAuth.getInstance().createUserWithEmailAndPassword(
+                Data.shared.email,
+                edtxtConfirmPassword.text.toString()
+            ).addOnCompleteListener {
+                if (it.isSuccessful) {
+                    updateUserProfile()
+                } else {
+                    Log.e("User register --->", it.exception.toString())
+                    Toast.makeText(
+                        this@CreatePasswordActivity,
+                        "Error al registrarse.",
+                        Toast.LENGTH_SHORT
+                    ).show()
+                }
+            }
         }
+    }
+
+    fun updateUserProfile() {
+        val user = FirebaseAuth.getInstance().currentUser
+
+        val profileUpdates = userProfileChangeRequest {
+            val fullUserName = Data.shared.userName + " " + Data.shared.lastName
+            displayName = fullUserName
+        }
+
+        user!!.updateProfile(profileUpdates).addOnCompleteListener {
+            if (it.isSuccessful) {
+                Data.shared.isRegistered = true
+                Utils().createIntent(
+                    this@CreatePasswordActivity,
+                    SuccessRegisterActivity()
+                )
+            } else {
+                Toast.makeText(
+                    this@CreatePasswordActivity,
+                    "Error al registrarse.",
+                    Toast.LENGTH_SHORT
+                ).show()
+            }
+        }
+
     }
 
     private val passwordTextWatcher = object : TextWatcher {

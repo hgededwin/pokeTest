@@ -10,6 +10,7 @@ import android.provider.MediaStore
 import android.util.Base64
 import android.util.Log
 import android.view.MenuItem
+import android.widget.LinearLayout
 import android.widget.TextView
 import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
@@ -24,6 +25,7 @@ import androidx.drawerlayout.widget.DrawerLayout
 import androidx.fragment.app.Fragment
 import com.ehernndez.poketest.R
 import com.ehernndez.poketest.data.persistantData.Data
+import com.ehernndez.poketest.ui.LoginActivity
 import com.ehernndez.poketest.ui.home.fragments.HomeFragment
 import com.ehernndez.poketest.ui.home.fragments.PokedexFragment
 import com.ehernndez.poketest.ui.home.fragments.PokemonFragment
@@ -31,6 +33,7 @@ import com.google.android.material.appbar.MaterialToolbar
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.android.material.materialswitch.MaterialSwitch
 import com.google.android.material.navigation.NavigationView
+import com.google.firebase.auth.FirebaseAuth
 import de.hdodenhof.circleimageview.CircleImageView
 import java.io.ByteArrayOutputStream
 import java.io.File
@@ -48,6 +51,8 @@ class HomeActivity : AppCompatActivity() {
     lateinit var biometricPrompt: BiometricPrompt
     lateinit var biometricPromptInfo: BiometricPrompt.PromptInfo
 
+    lateinit var btnLogout: LinearLayout
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_home)
@@ -56,6 +61,7 @@ class HomeActivity : AppCompatActivity() {
         toolbar = findViewById(R.id.home_toolbar)
         drawerLayout = findViewById(R.id.drawer_layout_home)
         drawerNavigation = findViewById(R.id.drawer_navigation_view)
+        btnLogout = findViewById(R.id.container_logout)
 
         setSupportActionBar(toolbar)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
@@ -67,6 +73,13 @@ class HomeActivity : AppCompatActivity() {
         createDrawerMenu()
 
         makeBiometricPrompt()
+
+
+        btnLogout.setOnClickListener {
+            FirebaseAuth.getInstance().signOut()
+            startActivity(Intent(this, LoginActivity::class.java))
+            finish()
+        }
     }
 
     private fun createDrawerMenu() {
@@ -138,14 +151,18 @@ class HomeActivity : AppCompatActivity() {
     private fun customHeader() {
         val headerView = drawerNavigation.getHeaderView(0)
         val txtUserName = headerView.findViewById<TextView>(R.id.txt_username)
-        val username = Data.shared.userName + " " + Data.shared.lastName
-        txtUserName.text = username
 
         val txtBirthday = headerView.findViewById<TextView>(R.id.txt_birthday)
         txtBirthday.text = Data.shared.bornDate
 
         val txtEmail = headerView.findViewById<TextView>(R.id.txt_email)
-        txtEmail.text = Data.shared.email
+
+        val user = FirebaseAuth.getInstance().currentUser
+        user.let {
+            val username = user?.displayName
+            txtUserName.text = "Hola, $username"
+            txtEmail.text = user?.email
+        }
 
         val imgUser =
             headerView.findViewById<CircleImageView>(R.id.img_user)

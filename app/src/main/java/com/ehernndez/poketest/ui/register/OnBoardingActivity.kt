@@ -7,6 +7,8 @@ import android.widget.Button
 import androidx.appcompat.app.AppCompatActivity
 import com.ehernndez.poketest.R
 import com.ehernndez.poketest.utils.isValidEmail
+import com.google.firebase.crashlytics.ktx.crashlytics
+import com.google.firebase.ktx.Firebase
 
 class OnBoardingActivity : AppCompatActivity() {
     lateinit var btnStart: Button
@@ -17,7 +19,13 @@ class OnBoardingActivity : AppCompatActivity() {
 
         btnStart = findViewById(R.id.btn_start)
 
+       val crashlytics = Firebase.crashlytics
+        crashlytics.setCustomKey("onboarding_key", "user_made_click_on_button")
+        crashlytics.setUserId("hgededwindaniel@gmail.com")
+
         btnStart.setOnClickListener {
+           // throw RuntimeException("Test Crash")
+
             val intent = Intent(this, RegisterActivity::class.java)
             startActivity(intent)
         }

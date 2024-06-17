@@ -138,6 +138,7 @@ class RegisterActivity : AppCompatActivity() {
 
         btnNext.setOnClickListener {
             saveDataUser()
+           // throw RuntimeException("Register exception") // Force a crash
             val intent = Intent(this@RegisterActivity, VerificationCodeActivity::class.java)
             startActivity(intent)
         }

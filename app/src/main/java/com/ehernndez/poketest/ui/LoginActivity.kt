@@ -3,6 +3,7 @@ package com.ehernndez.poketest.ui
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
+import android.util.Log
 import android.view.View
 import android.widget.Button
 import android.widget.TextView
@@ -17,6 +18,7 @@ import com.google.android.material.button.MaterialButton
 import com.google.android.material.card.MaterialCardView
 import com.google.android.material.textfield.TextInputEditText
 import com.google.android.material.textfield.TextInputLayout
+import com.google.firebase.auth.FirebaseAuth
 
 class LoginActivity : AppCompatActivity() {
     lateinit var containerPassword: TextInputLayout
@@ -49,8 +51,6 @@ class LoginActivity : AppCompatActivity() {
             txtEmailuser.text = Data.shared.email
         }
 
-
-
         edtxtPassword.addTextChangedListener(object : TextWatcher {
             override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
             }
@@ -78,9 +78,26 @@ class LoginActivity : AppCompatActivity() {
         }
 
         btnLogin.setOnClickListener {
-            Data.shared.psw = edtxtPassword.text.toString()
+            /*Data.shared.psw = edtxtPassword.text.toString()
             Utils().createIntent(this@LoginActivity, HomeActivity())
-            finish()
+            finish()*/
+
+
+            FirebaseAuth.getInstance()
+                .signInWithEmailAndPassword(Data.shared.email, edtxtPassword.text.toString())
+                .addOnCompleteListener {
+                    if (it.isSuccessful) {
+                        Utils().createIntent(this@LoginActivity, HomeActivity())
+                        finish()
+                    } else {
+                        Log.e("Login User ---->", it.exception.toString())
+                        Toast.makeText(
+                            this@LoginActivity,
+                            "Error al iniciar sesión",
+                            Toast.LENGTH_SHORT
+                        ).show()
+                    }
+                }
         }
     }
 }
