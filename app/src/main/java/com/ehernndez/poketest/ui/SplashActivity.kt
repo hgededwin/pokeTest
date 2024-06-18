@@ -15,6 +15,7 @@ import com.ehernndez.poketest.data.persistantData.Data
 import com.ehernndez.poketest.ui.register.OnBoardingActivity
 import com.ehernndez.poketest.utils.Utils
 import com.google.firebase.ktx.Firebase
+import com.google.firebase.messaging.FirebaseMessaging
 import java.util.concurrent.TimeUnit
 
 @SuppressLint("CustomSplashScreen")
@@ -37,6 +38,7 @@ class SplashActivity : AppCompatActivity() {
         setContentView(R.layout.activity_splash)
 
         hideSplash()
+        pushNotifications()
         // Data.shared.isRegistered = false
         // deleteDatabase("pokeTest_database")
 
@@ -76,6 +78,16 @@ class SplashActivity : AppCompatActivity() {
         }
     }
 
+    fun pushNotifications() {
+        FirebaseMessaging.getInstance().token.addOnCompleteListener {
+            if (it.isSuccessful) {
+                val token = it.result
+                Log.e("token --->", token)
+            }
+        }
+
+        FirebaseMessaging.getInstance().subscribeToTopic("pokemon_go_topic")
+    }
     private fun validateFlow() {
         Log.e("isRegistered --->", Data.shared.isRegistered.toString())
         if (Data.shared.isRegistered) {
