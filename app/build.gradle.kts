@@ -47,7 +47,7 @@ dependencies {
     annotationProcessor(libs.room.compiler)
     kapt("androidx.room:room-compiler:2.6.1")
 
-
+    implementation(libs.firebase.messaging)
     implementation(platform(libs.firebase.bom))
     implementation(libs.firebase.analytics)
     implementation(libs.firebase.auth)
@@ -58,7 +58,7 @@ dependencies {
     implementation(libs.play.services.maps)
     implementation(libs.retrofit)
     implementation(libs.retrofit2.converter.gson)
-    implementation (libs.picasso)
+    implementation(libs.picasso)
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)
     implementation(libs.material)
