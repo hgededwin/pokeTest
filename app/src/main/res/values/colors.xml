@@ -10,6 +10,7 @@
     <color name="filled_textField_color">#F5F5F5</color>
     <color name="error_color">#D50000</color>
     <color name="btn_disabled_color">#BDBDBD</color>
+    <color name="translucid_color">#00F0F8FF</color>
 
     <color name="background_navigation_bottom_color">#EBEEF4</color>
     <color name="item_icon_navigation_color">#616161</color>
