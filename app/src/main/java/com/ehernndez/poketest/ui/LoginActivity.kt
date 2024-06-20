@@ -18,6 +18,8 @@ import com.google.android.material.button.MaterialButton
 import com.google.android.material.card.MaterialCardView
 import com.google.android.material.textfield.TextInputEditText
 import com.google.android.material.textfield.TextInputLayout
+import com.google.firebase.analytics.FirebaseAnalytics
+import com.google.firebase.analytics.logEvent
 import com.google.firebase.auth.FirebaseAuth
 
 class LoginActivity : AppCompatActivity() {
@@ -82,14 +84,22 @@ class LoginActivity : AppCompatActivity() {
             Utils().createIntent(this@LoginActivity, HomeActivity())
             finish()*/
 
-
             FirebaseAuth.getInstance()
                 .signInWithEmailAndPassword(Data.shared.email, edtxtPassword.text.toString())
                 .addOnCompleteListener {
                     if (it.isSuccessful) {
+                        val bundle = Bundle()
+                        bundle.putBoolean("user_login_by_password", true)
+                        Data.firebaseAnalytics.logEvent(FirebaseAnalytics.Event.LOGIN, bundle)
+
                         Utils().createIntent(this@LoginActivity, HomeActivity())
                         finish()
                     } else {
+
+                        val bundle = Bundle()
+                        bundle.putBoolean("failed_user_login", true)
+                        Data.firebaseAnalytics.logEvent(FirebaseAnalytics.Event.LOGIN, bundle)
+
                         Log.e("Login User ---->", it.exception.toString())
                         Toast.makeText(
                             this@LoginActivity,
