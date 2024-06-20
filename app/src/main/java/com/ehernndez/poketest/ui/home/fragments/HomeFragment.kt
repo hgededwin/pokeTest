@@ -6,47 +6,48 @@ import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.View
+import android.widget.Button
+import android.widget.Toast
 import com.ehernndez.poketest.R
+import com.ehernndez.poketest.data.api.models.firebaseModels.Post
 import com.ehernndez.poketest.ui.LoginActivity
 import com.google.android.material.card.MaterialCardView
+import com.google.firebase.database.DatabaseReference
+import com.google.firebase.database.FirebaseDatabase
 
 class HomeFragment : Fragment(R.layout.fragment_home) {
-   // lateinit var cardView: MaterialCardView
+    // lateinit var cardView: MaterialCardView
+    lateinit var dbRef: DatabaseReference
+    lateinit var btnSaveData: Button
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-       // adding intent from fragment to new activity
-      /*  cardView = view.findViewById(R.id.card_view_home)
-        cardView.setOnClickListener {
-            val intent = Intent(activity, LoginActivity::class.java)
-            startActivity(intent)
-            requireActivity().finish()
-        } */
+        initFirebaseRDB()
 
-
-        Log.e("[FIRST FRAGMENT --->", "method onViewCreated was called")
+        btnSaveData = view.findViewById(R.id.btn_save_data)
+        btnSaveData.setOnClickListener {
+            savePostInfo()
+        }
     }
 
-    override fun onStart() {
-        super.onStart()
-        Log.e("[FIRST FRAGMENT] --->", "method onStart was called")
+    private fun initFirebaseRDB() {
+        dbRef = FirebaseDatabase.getInstance().getReference("posts")
     }
 
-    override fun onStop() {
-        super.onStop()
-        Log.e("[FIRST FRAGMENT] --->", "method onStop was called")
-    }
+    private fun savePostInfo() {
+        val postId = dbRef.push().key!!
 
-    override fun onAttach(context: Context) {
-        super.onAttach(context)
-
-        Log.e("[FIRST FRAGMENT] --->", "method onAttach was called")
-    }
-
-
-    override fun onDestroyView() {
-        super.onDestroyView()
-
-        Log.e("[FIRST FRAGMENT -->", "method onDestroyView was called")
+        val post = Post(
+            postId,
+            "Festival de Pokemon Go",
+            "Te invitamos al evento super magnifico de Pokemon Go que se llevará acabo en la CDMX.",
+            ""
+        )
+        dbRef.child(postId).setValue(post).addOnCompleteListener {
+            Toast.makeText(context, "Post creado", Toast.LENGTH_SHORT).show()
+        }.addOnFailureListener {
+            Toast.makeText(context, "Error al crear el post", Toast.LENGTH_SHORT).show()
+        }
     }
 }

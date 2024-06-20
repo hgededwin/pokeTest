@@ -24,6 +24,7 @@ import androidx.core.view.GravityCompat
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.fragment.app.Fragment
 import com.ehernndez.poketest.R
+import com.ehernndez.poketest.data.api.models.firebaseModels.Post
 import com.ehernndez.poketest.data.persistantData.Data
 import com.ehernndez.poketest.ui.LoginActivity
 import com.ehernndez.poketest.ui.home.fragments.HomeFragment
@@ -34,6 +35,8 @@ import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.android.material.materialswitch.MaterialSwitch
 import com.google.android.material.navigation.NavigationView
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.database.DatabaseReference
+import com.google.firebase.database.FirebaseDatabase
 import de.hdodenhof.circleimageview.CircleImageView
 import java.io.ByteArrayOutputStream
 import java.io.File
@@ -52,7 +55,6 @@ class HomeActivity : AppCompatActivity() {
     lateinit var biometricPromptInfo: BiometricPrompt.PromptInfo
 
     lateinit var btnLogout: LinearLayout
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_home)
@@ -80,7 +82,10 @@ class HomeActivity : AppCompatActivity() {
             startActivity(Intent(this, LoginActivity::class.java))
             finish()
         }
+
     }
+
+
 
     private fun createDrawerMenu() {
         actionDrawerToggle = ActionBarDrawerToggle(

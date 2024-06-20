@@ -47,6 +47,7 @@ dependencies {
     annotationProcessor(libs.room.compiler)
     kapt("androidx.room:room-compiler:2.6.1")
 
+    implementation(libs.firebase.database)
     implementation (libs.lottie)
     implementation(libs.firebase.messaging)
     implementation(platform(libs.firebase.bom))

@@ -14,6 +14,7 @@ import com.ehernndez.poketest.data.persistantData.Data
 import com.ehernndez.poketest.ui.home.HomeActivity
 import com.ehernndez.poketest.utils.NetworkConnection
 import com.ehernndez.poketest.utils.Utils
+import com.ehernndez.poketest.utils.loader.LoaderUtils
 import com.google.android.material.button.MaterialButton
 import com.google.android.material.card.MaterialCardView
 import com.google.android.material.textfield.TextInputEditText
@@ -84,9 +85,12 @@ class LoginActivity : AppCompatActivity() {
             Utils().createIntent(this@LoginActivity, HomeActivity())
             finish()*/
 
+            LoaderUtils.showLoader(this)
+
             FirebaseAuth.getInstance()
                 .signInWithEmailAndPassword(Data.shared.email, edtxtPassword.text.toString())
                 .addOnCompleteListener {
+                    LoaderUtils.hideLoader()
                     if (it.isSuccessful) {
                         val bundle = Bundle()
                         bundle.putBoolean("user_login_by_password", true)
