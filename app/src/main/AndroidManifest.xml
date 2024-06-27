@@ -13,6 +13,10 @@
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
 
+    <supports-screens
+        android:largeScreens="true"
+        android:smallScreens="true" />
+
     <application
         android:name=".data.persistantData.Data"
         android:allowBackup="true"
@@ -23,6 +27,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.PokeTest"
+        android:windowSoftInputMode="adjustResize"
         android:usesCleartextTraffic="true"
         tools:targetApi="34">
         <activity
